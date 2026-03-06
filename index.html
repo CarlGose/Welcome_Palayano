@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+      :root { 
+        --p-green: #1b7a33; 
+        --l-green: #2fa154;
+        --accent-yellow: #feca38; 
+        --bg-color: #f1f5f9; 
+        --text-dark: #1e293b;
+        --mabuhay-grad-1: #a8d94c; 
+        --mabuhay-grad-2: #7eb336; 
+        --yellow-green: #a8d94c;
+        --yellow-green-dark: #7eb336;
+        --dark-green-banner: #0a3616;
+      }
+      
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      
+      html, body { 
+        margin: 0; padding: 0; width: 100%; height: 100vh; 
+        overflow: hidden; background: var(--bg-color); font-family: 'Montserrat', sans-serif;
+      }
+
+      .scroll-viewport::-webkit-scrollbar { display: none; }
+      .scroll-viewport { -ms-overflow-style: none; scrollbar-width: none; }
+
+      .modal-body::-webkit-scrollbar { display: none; }
+      .modal-body { -ms-overflow-style: none; scrollbar-width: none; overflow-y: auto; padding-top: 10px; }
+      
+      .app-shell { 
+        width: 100%; max-width: 440px; height: 100vh; margin: 0 auto; 
+        display: flex; flex-direction: column; background: var(--bg-color); 
+        position: relative; overflow: hidden; 
+      }
+
+      .scroll-viewport { 
+        width: 100%; height: 100vh; overflow-y: auto; overflow-x: hidden; position: relative; 
+      }
+
+      .header-wrapper {
+        position: relative; width: 100%; height: 215px; z-index: 10;
+        background-color: var(--dark-green-banner);
+        background-size: cover; background-position: center;
+        border-radius: 0 0 40px 40px; 
+        margin-bottom: 15px; 
+      }
+      
+      header { 
+        height: 100%; text-align: center; color: white; position: relative;
+        display: flex; flex-direction: column; align-items: center;
+      }
+
+      .menu-btn {
+        position: absolute; top: 22px; right: 20px; background: none; border: none; 
+        cursor: pointer; z-index: 10; padding: 5px;
+      }
+
+      .logo-img { 
+        width: 65px; height: 65px; margin-top: 20px; border-radius: 50%; 
+        background: white; padding: 3px; position: absolute; top: 0; z-index: 2;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      }
+
+      .header-title-group {
+        position: absolute; top: 90px; z-index: 2;
+        display: flex; flex-direction: column; align-items: center; width: 100%;
+      }
+
+      .rep-phil {
+        font-family: 'Playfair Display', serif;
+        color: var(--accent-yellow);
+        font-size: 0.55rem;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 3px;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+
+      header h1 { 
+        margin: 0; 
+        font-family: 'Times New Roman', Times, serif; 
+        font-size: 2.4rem; 
+        font-weight: 800; 
+        letter-spacing: 1px;
+        text-shadow: 0 2px 6px rgba(0,0,0,0.4); 
+        line-height: 1;
+      }
+
+      .sub-title { 
+        font-family: 'Times New Roman', Times, serif; 
+        color: white; 
+        font-size: 0.55rem; 
+        font-weight: 700; 
+        margin-top: 6px; 
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      }
+      
+      .mabuhay-btn-container { 
+        position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%); z-index: 150; 
+      }
+
+      .mabuhay-btn { 
+        background: linear-gradient(135deg, var(--mabuhay-grad-1) 0%, var(--mabuhay-grad-2) 100%); 
+        color: white; padding: 12px 36px; border-radius: 30px; font-weight: 800; font-size: 1.35rem; 
+        box-shadow: 0 6px 16px rgba(126, 179, 54, 0.35); border: 1px solid rgba(255,255,255,0.15); 
+        white-space: nowrap; letter-spacing: 1px;
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      .sticky-nav {
+        position: sticky; top: 0; width: 100%; background: white; 
+        z-index: 5; 
+        padding-top: 20px; 
+        box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+      }
+
+      .sticky-nav::before { 
+        content: ""; position: absolute; top: -160px; left: 0; width: 100%; height: 161px; 
+        background: white; z-index: -1; 
+      }
+
+      .tabs { display: flex; justify-content: space-around; }
+      
+      .tab-btn { 
+        background: none; border: none; font-weight: 600; color: #94a3b8; cursor: pointer; 
+        font-size: 0.85rem; text-transform: uppercase; padding: 12px 0; border-bottom: 4px solid transparent; 
+        flex: 1; letter-spacing: 0.5px; 
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .tab-btn.active { color: var(--yellow-green-dark); border-bottom-color: var(--yellow-green-dark); font-weight: 800; }
+
+      .tab-pop { animation: tab-bounce 0.4s ease; }
+      @keyframes tab-bounce {
+        0% { transform: scale(1); }
+        50% { transform: scale(0.92); opacity: 0.8; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+
+      .search-container { padding: 10px 20px 8px; border-bottom: 1px solid #e2e8f0; } 
+      .search-container input {
+        width: 100%; padding: 10px 20px; border-radius: 14px; border: 2px solid #e2e8f0; 
+        font-family: inherit; outline: none; font-size: 0.95rem; 
+      } 
+      .search-container input:focus { border-color: var(--yellow-green-dark); background: #f8fafc; }
+
+      .track-wrapper { width: 100%; overflow: hidden; }
+      .track { display: flex; width: 300%; min-height: 100%; align-items: flex-start; transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); } 
+      .page { width: 33.333%; height: auto; min-height: 100vh; padding: 0 20px 20px 20px; }
+
+      .dept-card { 
+        background: #ffffff; border-radius: 20px; margin-bottom: 16px; display: flex; align-items: center; 
+        padding: 12px 18px; border: 1px solid #e2e8f0; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      }
+      .dept-card:active { transform: scale(0.98); background: #f8fafc; }
+      .dept-logo { width: 55px; height: 55px; margin-right: 18px; border-radius: 14px; background: #f1f5f9; object-fit: contain; padding: 4px; }
+      
+      .category-label {
+        display: inline-block; background: linear-gradient(135deg, var(--yellow-green) 0%, var(--yellow-green-dark) 100%); 
+        color: var(--text-dark); padding: 6px 14px; border-radius: 10px; font-size: 0.75rem; 
+        font-weight: 800; margin: 24px 0 12px; letter-spacing: 0.5px; box-shadow: 0 2px 8px rgba(126, 179, 54, 0.25);
+      }
+
+      .category-section:first-child .category-label { margin-top: 12px; }
+      .page-heading { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 16px 0 16px; }
+
+      .preview-card { background: white; border-radius: 16px; padding: 18px; margin-bottom: 14px; border: 1px solid #e2e8f0; box-shadow: 0 4px 10px rgba(0,0,0,0.03); }
+      .preview-title { font-weight: 800; font-size: 1rem; color: var(--text-dark); margin: 0 0 6px 0; line-height: 1.3; }
+      .preview-date { font-size: 0.75rem; color: var(--yellow-green-dark); font-weight: 800; margin-bottom: 8px; display: block; }
+      .preview-desc { font-size: 0.85rem; color: #64748b; margin: 0; line-height: 1.5; }
+
+      .portal-btn {
+        display: block; text-align: center; background: linear-gradient(135deg, var(--yellow-green) 0%, var(--yellow-green-dark) 100%);
+        color: var(--text-dark); padding: 16px 20px; border-radius: 14px; text-decoration: none;
+        font-weight: 800; font-size: 1.05rem; margin-top: 24px; box-shadow: 0 4px 12px rgba(126, 179, 54, 0.35); transition: 0.2s;
+      }
+
+      footer { 
+        position: fixed; bottom: 0; width: 100%; max-width: 440px; padding: 8px; text-align: center; 
+        font-size: 0.5rem; font-weight: 600; color: white; background: var(--p-green); z-index: 120; border-radius: 20px 20px 0 0;
+      }
+
+      .side-menu-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(15,23,42,0.6); z-index: 3000; opacity: 0; pointer-events: none; transition: 0.3s; }
+      .side-menu {
+        position: fixed; top: 0; right: -320px; width: 300px; max-width: 85%; height: 100%; background: white; 
+        z-index: 3001; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); padding: 24px 20px; box-shadow: -5px 0 15px rgba(0,0,0,0.1); 
+        display: flex; flex-direction: column; overflow-y: auto;
+      }
+      .side-menu.open { right: 0; }
+      .side-menu-overlay.open { opacity: 1; pointer-events: auto; }
+      
+      .side-menu-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--yellow-green-dark); padding-bottom: 12px; margin-bottom: 16px; }
+      .menu-title { font-size: 1.25rem; font-weight: 800; color: var(--text-dark); margin: 0; }
+      .close-menu-btn { background: none; border: none; font-size: 2.2rem; color: #64748b; cursor: pointer; padding: 0; line-height: 1; margin: 0; }
+      
+      .accordion-btn {
+        width: 100%; text-align: left; background: none; border: none; border-bottom: 1px solid #e2e8f0;
+        padding: 16px 0; font-size: 1.05rem; font-weight: 700; color: var(--text-dark);
+        display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: 0.2s;
+      }
+      .accordion-btn.active { color: var(--yellow-green-dark); border-bottom-color: transparent; }
+      .accordion-btn .icon { transition: transform 0.3s; font-size: 0.8rem; }
+      .accordion-btn.active .icon { transform: rotate(180deg); }
+      
+      .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; background: #f8fafc; border-radius: 0 0 12px 12px; margin-bottom: 8px; }
+      .accordion-inner { padding: 16px; font-size: 0.88rem; color: #475569; line-height: 1.6; }
+      .accordion-inner p { margin: 0 0 12px 0; }
+      .accordion-inner p:last-child { margin-bottom: 0; }
+
+      .modal-overlay { position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(15,23,42,0.6); display:flex; align-items:center; justify-content:center; z-index:2000; opacity:0; pointer-events:none; transition:0.3s; }
+      .modal-content { background:white; width:90%; max-width:380px; border-radius:28px; position:relative; box-shadow: 0 20px 40px rgba(0,0,0,0.2); max-height: 85vh; display: flex; flex-direction: column; overflow: hidden; }
+      .modal-header { position: absolute; top: 0; left: 0; width: 100%; padding: 16px; z-index: 2010; display: flex; justify-content: flex-end; pointer-events: none; }
+      .modal-close-btn { background: #f1f5f9; border: none; width: 36px; height: 36px; border-radius: 50%; font-size: 1.6rem; color: #64748b; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(0,0,0,0.1); pointer-events: auto; }
+
+      .lightbox-overlay { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+      .lightbox-overlay.show { display: flex; opacity: 1; }
+      .lightbox-content { max-width: 95%; max-height: 90%; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); object-fit: contain; }
+      .lightbox-close { position: absolute; top: 20px; right: 25px; color: #f1f1f1; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 4001; line-height: 1; }
+    </style>
+  </head>
+  <body>
+    <div class="app-shell">
+      
+      <div class="scroll-viewport" id="scrollContainer">
+        
+        <div class="header-wrapper" id="mainHeader" style="background-image: linear-gradient(135deg, rgba(10,54,22,0.85) 0%, rgba(5,35,12,0.95) 100%), url('<?= bannerBg ?>');">
+          <header id="headerContent">
+            <button class="menu-btn" onclick="toggleMenu()">
+              <svg viewBox="0 0 24 24" width="30" height="30" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+            </button>
+            <img src="<?= logoData ?>" class="logo-img">
+            <div class="header-title-group">
+              <div class="rep-phil">Republic of the Philippines</div>
+              <h1>PALAYAN CITY</h1>
+              <div class="sub-title">City Government of Palayan City &bull; Nueva Ecija</div>
+            </div>
+            <div class="mabuhay-btn-container" id="mabuhayContainer">
+              <div class="mabuhay-btn">MABUHAY!</div>
+            </div>
+          </header>
+        </div>
+        
+        <div class="sticky-nav" id="stickyNav">
+          <div class="tabs" id="mainTabs">
+            <button class="tab-btn active" onclick="swipe(0)">Offices</button>
+            <button class="tab-btn" onclick="swipe(1)">Updates</button>
+            <button class="tab-btn" onclick="swipe(2)">Explore</button>
+          </div>
+          <div class="search-container" id="searchContainer">
+            <input type="text" id="searchInp" placeholder="Search departments..." onkeyup="filterDepts()">
+          </div>
+        </div>
+
+        <div class="track-wrapper">
+          <div class="track" id="track">
+            
+            <div class="page" id="page0">
+              <? for (let cat in groupedDepts) { ?>
+                <div class="category-section">
+                  <span class="category-label"><?= cat ?></span>
+                  <? 
+                    let depts = groupedDepts[cat];
+                    for(let i=0; i<depts.length; i++) { 
+                      let d = depts[i];
+                      let currentLogo = logoMap[d.acronym] || logoData;
+                      let currentPic = pictureMap[d.acronym] || "";
+                      let currentServices = (d.services && d.services.length > 0) ? d.services.join('|') : "";
+                  ?>
+                    <div class="dept-card" onclick="openModal(this)"
+                         data-name="<?= d.name ?>" data-acronym="<?= d.acronym ?>"
+                         data-head="<?= d.head ?>" data-loc="<?= d.loc ?>"
+                         data-time="<?= d.time ?>" data-logo="<?= currentLogo ?>"
+                         data-pic="<?= currentPic ?>" data-services="<?= currentServices ?>"> 
+                      <img src="<?= currentLogo ?>" class="dept-logo">
+                      <div class="dept-text">
+                        <p style="font-weight:800; font-size:0.95rem; margin:0; color:var(--text-dark);"><?= d.name ?></p>
+                        <p style="font-weight:800; color:var(--yellow-green-dark); font-size:0.75rem; margin:0;"><?= d.acronym ?></p>
+                      </div>
+                    </div>
+                  <? } ?>
+                </div>
+              <? } ?>
+              <div style="height: 100px; width: 100%;"></div>
+            </div>
+
+            <div class="page" id="page1">
+              <div class="page-heading">Latest Announcements</div>
+              <div class="preview-card"><span class="preview-date">Recently Published</span><h3 class="preview-title">Citywide Clean-up Drive Initiated</h3><p class="preview-desc">Join our localized initiatives as we promote a cleaner and greener Palayan City.</p></div>
+              <div class="preview-card"><span class="preview-date">Announcements</span><h3 class="preview-title">New Business Permits Schedule</h3><p class="preview-desc">The BPLD office has adjusted the schedule for the current quarter.</p></div>
+              <a href="https://cityofpalayan.gov.ph/news-and-updates/" target="_blank" class="portal-btn">Access Full Updates Portal</a>
+              <div style="height: 100px; width: 100%;"></div>
+            </div>
+
+            <div class="page" id="page2">
+              <div class="page-heading">Discover Palayan</div>
+              <div class="preview-card"><span class="preview-date">Nature</span><h3 class="preview-title">Aulo Dam</h3><p class="preview-desc">Breathtaking views, perfect for serenity and nature photography.</p></div>
+              <div class="preview-card"><span class="preview-date">Recreation</span><h3 class="preview-title">People's Park</h3><p class="preview-desc">Family-friendly open spaces in the heart of the city.</p></div>
+              <a href="https://cityofpalayan.gov.ph/ctd" target="_blank" class="portal-btn">Visit City Tourism Portal</a>
+              <div style="height: 100px; width: 100%;"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+      <footer>GOVPH © 2026 CITY OF PALAYAN</footer>
+
+      <div class="modal-overlay" id="deptModal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+          <div class="modal-header"><button class="modal-close-btn" onclick="closeModal()">&times;</button></div>
+          <div class="modal-body" style="padding: 32px;">
+            <div style="text-align:center">
+              <img src="" id="mLogo" style="width:75px; height:75px; border-radius:20px; object-fit:contain; background:#f8fafc; padding:8px; border:1px solid #e2e8f0;">
+              <h2 id="mName" style="font-size:1.15rem; font-weight:800; margin:16px 0 4px; color:var(--text-dark);"></h2>
+              <p id="mAcronym" style="color:var(--yellow-green-dark); font-weight:800; margin:0 0 24px; font-size:0.9rem;"></p>
+            </div>
+            <img id="mPic" src="" style="width:100%; height:160px; object-fit:cover; border-radius:16px; margin-bottom:20px; display:none; border: 1px solid #e2e8f0; cursor: pointer;" onclick="enlargeImage()">
+            <div style="background:#f8fafc; border-radius:16px; padding:18px; font-size:0.9rem; border:1px solid #e2e8f0;">
+              <p style="margin:0 0 10px;"><strong>Head:</strong> <br><span id="mHead" style="color:#475569;"></span></p>
+              <p style="margin:0 0 10px;"><strong>Location:</strong> <br><span id="mLoc" style="color:#475569;"></span></p>
+              <p style="margin:0;"><strong>Hours:</strong> <br><span id="mTime" style="color:#475569;"></span></p>
+              <div id="mServicesWrapper" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;">
+                <strong style="color: var(--text-dark);">Services Offered:</strong>
+                <ul id="mServicesList" style="margin: 8px 0 0 0; padding-left: 20px; color: #475569; font-size: 0.85rem; line-height: 1.4;"></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="side-menu-overlay" id="sideMenuOverlay" onclick="toggleMenu()"></div>
+      <div class="side-menu" id="sideMenu">
+        <div class="side-menu-header">
+          <h2 class="menu-title">About Palayan</h2>
+          <button class="close-menu-btn" onclick="toggleMenu()">×</button>
+        </div>
+        
+        <button class="accordion-btn" onclick="toggleAccordion('about')">History & Growth <span class="icon">▼</span></button>
+        <div class="accordion-content" id="about-content">
+          <div class="accordion-inner">
+            <p>Established in 1965 by RA 4475, Palayan City transitioned from a government stock farm to become the capital of Nueva Ecija.</p>
+            <p>Today, it is evolving into a modern hub with the Palayan City Business Hub leading the way in jobs and investment.</p>
+          </div>
+        </div>
+
+        <button class="accordion-btn" onclick="toggleAccordion('vision')">Vision <span class="icon">▼</span></button>
+        <div class="accordion-content" id="vision-content">
+          <div class="accordion-inner">
+            <p>The vibrant Capital City and employment center of Nueva Ecija; thriving through an agro-industrial and Information Technology economy; enabled by disaster-resilient and organized urban growth.</p>
+            <p style="font-weight: 800; color: var(--yellow-green-dark);">Tungo sa Bagong Palayan, Now Na!</p>
+          </div>
+        </div>
+        
+        <button class="accordion-btn" onclick="toggleAccordion('mission')">Mission <span class="icon">▼</span></button>
+        <div class="accordion-content" id="mission-content">
+          <div class="accordion-inner">
+            <p>As the steward of the vision, the City Government shall transform Palayan into a modern, sustainable and resilient city that espouses the balanced management of the built and unbuilt environment to ensure equitable growth.</p>
+          </div>
+        </div>
+
+        <button class="accordion-btn" onclick="toggleAccordion('mandate')">Mandate <span class="icon">▼</span></button>
+        <div class="accordion-content" id="mandate-content">
+          <div class="accordion-inner">
+            <p>To plan and implement programs, projects, and activities to alleviate poverty, to promote and ensure the general welfare and interest of its people.</p>
+          </div>
+        </div>
+
+        <button class="accordion-btn" onclick="toggleAccordion('pledge')">Service Pledge <span class="icon">▼</span></button>
+        <div class="accordion-content" id="pledge-content">
+          <div class="accordion-inner">
+            <p>We pledge to serve our people with utmost diligence, dignity, integrity, respect, and with the highest degree of professionalism.</p>
+            <p>We commit to provide accessible, accurate, and reasonable information at all times.</p>
+          </div>
+        </div>
+        
+        <div style="height: 60px; width: 100%; flex-shrink: 0;"></div> 
+      </div>
+
+      <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()"><span class="lightbox-close">&times;</span><img class="lightbox-content" id="lightboxImg"></div>
+    </div>
+
+    <script>
+      const scrollContainer = document.getElementById('scrollContainer');
+      const headerContent = document.getElementById('headerContent');
+      const searchContainer = document.getElementById('searchContainer');
+      const searchInp = document.getElementById('searchInp');
+
+      scrollContainer.addEventListener('scroll', e => {
+        let scrollTop = e.target.scrollTop;
+        let p = Math.max(0, Math.min(1, scrollTop / 155));
+        headerContent.style.opacity = Math.max(0, 1 - (p * 1.5));
+      }, { passive: true });
+
+      function swipe(idx) {
+        const track = document.getElementById('track');
+        const tabs = document.querySelectorAll('.tab-btn');
+        tabs.forEach((btn, i) => {
+          const isActive = i === idx;
+          btn.classList.toggle('active', isActive);
+          if (isActive) {
+            btn.classList.remove('tab-pop');
+            void btn.offsetWidth;
+            btn.classList.add('tab-pop');
+          }
+        });
+        track.style.transform = `translateX(-${idx * 33.333}%)`;
+        scrollContainer.scrollTo(0, 0); 
+        if(idx !== 0) { searchContainer.style.display = "none"; } 
+        else { searchContainer.style.display = "block"; searchInp.value = ""; filterDepts(); }
+        document.querySelectorAll('.page').forEach((page, i) => {
+          if (i === idx) { page.style.height = 'auto'; page.style.overflow = 'visible'; } 
+          else { page.style.height = '100vh'; page.style.overflow = 'hidden'; }
+        });
+      }
+
+      function filterDepts() {
+        let val = searchInp.value.toLowerCase().trim();
+        document.querySelectorAll('.category-section').forEach(section => {
+          let hasVisibleCards = false;
+          section.querySelectorAll('.dept-card').forEach(card => {
+            let name = card.dataset.name.toLowerCase();
+            let acronym = card.dataset.acronym.toLowerCase();
+            let match = name.includes(val) || acronym.includes(val);
+            card.style.display = match ? "flex" : "none";
+            if (match) hasVisibleCards = true;
+          });
+          section.style.display = hasVisibleCards ? "block" : "none";
+        });
+      }
+
+      function openModal(el) {
+        document.getElementById('mName').textContent = el.dataset.name;
+        document.getElementById('mAcronym').textContent = el.dataset.acronym;
+        document.getElementById('mHead').textContent = el.dataset.head;
+        document.getElementById('mLoc').textContent = el.dataset.loc;
+        document.getElementById('mTime').textContent = el.dataset.time;
+        document.getElementById('mLogo').src = el.dataset.logo;
+        let picEl = document.getElementById('mPic');
+        if (el.dataset.pic) { picEl.src = el.dataset.pic; picEl.style.display = "block"; } 
+        else { picEl.style.display = "none"; }
+        let servicesData = el.dataset.services;
+        let servicesWrapper = document.getElementById('mServicesWrapper');
+        let servicesList = document.getElementById('mServicesList');
+        if (servicesData) {
+          let servicesArr = servicesData.split('|');
+          servicesList.innerHTML = servicesArr.map(s => `<li>${s.trim()}</li>`).join('');
+          servicesWrapper.style.display = 'block';
+        } else {
+          servicesList.innerHTML = '';
+          servicesWrapper.style.display = 'none';
+        }
+        document.getElementById('deptModal').style.opacity = '1';
+        document.getElementById('deptModal').style.pointerEvents = 'auto';
+      }
+
+      function closeModal() { 
+        document.getElementById('deptModal').style.opacity = '0';
+        document.getElementById('deptModal').style.pointerEvents = 'none';
+      }
+
+      function toggleMenu() {
+        const menu = document.getElementById('sideMenu');
+        const overlay = document.getElementById('sideMenuOverlay');
+        menu.classList.toggle('open');
+        overlay.classList.toggle('open');
+      }
+
+      function toggleAccordion(id) {
+        const content = document.getElementById(id + '-content');
+        const btn = content.previousElementSibling;
+        if (content.style.maxHeight) {
+          content.style.maxHeight = null;
+          btn.classList.remove('active');
+        } else {
+          document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = null);
+          document.querySelectorAll('.accordion-btn').forEach(el => el.classList.remove('active'));
+          content.style.maxHeight = content.scrollHeight + "px";
+          btn.classList.add('active');
+        }
+      }
+
+      function enlargeImage() {
+        const picSrc = document.getElementById('mPic').src;
+        if (picSrc) {
+          document.getElementById('lightboxImg').src = picSrc;
+          document.getElementById('lightboxOverlay').classList.add('show');
+        }
+      }
+
+      function closeLightbox() {
+        document.getElementById('lightboxOverlay').classList.remove('show');
+      }
+    </script>
+  </body>
+</html>
