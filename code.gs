@@ -5,6 +5,23 @@ function doGet() {
   
   let logoUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png";
   let bannerBg = ""; 
+  // Static logos mapped from the public/ folder images
+  // These are used as default logos for each department acronym
+  const staticLogoMap = {
+    "CASSO":  "assessor.jpg",
+    "CTO":    "Treasure.jpg",
+    "CDRRMO": "cdrrmo.jpg",
+    "CCR":    "civil_registrar.jpg",
+    "CSWD":   "cswd.jpg",
+    "CEO":    "engineering.jpg",
+    "ICT":    "ict.png",
+    "CPDO":   "planning.jpg",
+    "CTD":    "tourism.jpg",
+    "TMPSD":  "traffic.jpg",
+    "CVO":    "veterinary.jpg",
+    "LEPIDO": "Ledipo.png"
+  };
+
   const logoMap = {};
   const pictureMap = {}; 
   const locationMap = {}; // Map to store text from Column D
@@ -70,6 +87,13 @@ function doGet() {
     }
   });
 
+  // Apply staticLogoMap as fallback: use public-folder image if no sheet URL was provided
+  departments.forEach(d => {
+    if (!logoMap[d.acronym] && staticLogoMap[d.acronym]) {
+      logoMap[d.acronym] = staticLogoMap[d.acronym];
+    }
+  });
+
   const groupedDepts = {};
   departments.forEach(d => {
     if (!groupedDepts[d.cat]) groupedDepts[d.cat] = [];
@@ -82,6 +106,7 @@ function doGet() {
   template.logoMap = logoMap;
   template.pictureMap = pictureMap;
   template.groupedDepts = groupedDepts;
+  template.staticLogoMap = staticLogoMap;
   
   return template.evaluate()
     .setTitle('Palayan City Directory')

@@ -1,21 +1,11 @@
-sd
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="description" content="Palayan City Government Official Directory — find offices, departments, and services.">
+  <title>Palayan City Directory</title>
   <base target="_top">
   <link
     href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
@@ -252,19 +242,9 @@ sd
     }
 
     @keyframes tab-bounce {
-      0% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(0.92);
-        opacity: 0.8;
-      }
-
-      100% {
-        transform: scale(1);
-        opacity: 1;
-      }
+      0% { transform: scale(1); }
+      50% { transform: scale(0.92); opacity: 0.8; }
+      100% { transform: scale(1); opacity: 1; }
     }
 
     .search-container {
@@ -333,6 +313,7 @@ sd
       background: #f1f5f9;
       object-fit: contain;
       padding: 4px;
+      flex-shrink: 0;
     }
 
     .category-label {
@@ -451,9 +432,7 @@ sd
       overflow-y: auto;
     }
 
-    .side-menu.open {
-      right: 0;
-    }
+    .side-menu.open { right: 0; }
 
     .side-menu-overlay.open {
       opacity: 1;
@@ -514,9 +493,7 @@ sd
       font-size: 0.8rem;
     }
 
-    .accordion-btn.active .icon {
-      transform: rotate(180deg);
-    }
+    .accordion-btn.active .icon { transform: rotate(180deg); }
 
     .accordion-content {
       max-height: 0;
@@ -534,13 +511,8 @@ sd
       line-height: 1.6;
     }
 
-    .accordion-inner p {
-      margin: 0 0 12px 0;
-    }
-
-    .accordion-inner p:last-child {
-      margin-bottom: 0;
-    }
+    .accordion-inner p { margin: 0 0 12px 0; }
+    .accordion-inner p:last-child { margin-bottom: 0; }
 
     .modal-overlay {
       position: fixed;
@@ -648,7 +620,7 @@ sd
     <div class="scroll-viewport" id="scrollContainer">
 
       <div class="header-wrapper" id="mainHeader"
-        style="background-image: linear-gradient(135deg, rgba(10,54,22,0.85) 0%, rgba(5,35,12,0.95) 100%), url('<?= bannerBg ?>');">
+        style="background-image: linear-gradient(135deg, rgba(10,54,22,0.85) 0%, rgba(5,35,12,0.95) 100%);">
         <header id="headerContent">
           <button class="menu-btn" onclick="toggleMenu()">
             <svg viewBox="0 0 24 24" width="30" height="30" stroke="white" stroke-width="2.5" fill="none"
@@ -658,7 +630,8 @@ sd
               <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
-          <img src="<?= logoData ?>" class="logo-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png"
+            class="logo-img" alt="Palayan City Seal">
           <div class="header-title-group">
             <div class="rep-phil">Republic of the Philippines</div>
             <h1>PALAYAN CITY</h1>
@@ -672,9 +645,9 @@ sd
 
       <div class="sticky-nav" id="stickyNav">
         <div class="tabs" id="mainTabs">
-          <button class="tab-btn active" onclick="swipe(0)">Offices</button>
-          <button class="tab-btn" onclick="swipe(1)">Updates</button>
-          <button class="tab-btn" onclick="swipe(2)">Explore</button>
+          <button class="tab-btn active" id="tab-offices" onclick="swipe(0)">Offices</button>
+          <button class="tab-btn" id="tab-updates" onclick="swipe(1)">Updates</button>
+          <button class="tab-btn" id="tab-explore" onclick="swipe(2)">Explore</button>
         </div>
         <div class="search-container" id="searchContainer">
           <input type="text" id="searchInp" placeholder="Search departments..." onkeyup="filterDepts()">
@@ -684,62 +657,36 @@ sd
       <div class="track-wrapper">
         <div class="track" id="track">
 
-          <div class="page" id="page0">
-            <? for (let cat in groupedDepts) { ?>
-            <div class="category-section">
-              <span class="category-label">
-                <?= cat ?>
-              </span>
-              <? 
-                    let depts = groupedDepts[cat];
-                    for(let i=0; i<depts.length; i++) { 
-                      let d = depts[i];
-                      let currentLogo = logoMap[d.acronym] || logoData;
-                      let currentPic = pictureMap[d.acronym] || "";
-                      let currentServices = (d.services && d.services.length > 0) ? d.services.join('|') : "";
-                  ?>
-              <div class="dept-card" onclick="openModal(this)" data-name="<?= d.name ?>" data-acronym="<?= d.acronym ?>"
-                data-head="<?= d.head ?>" data-loc="<?= d.loc ?>" data-time="<?= d.time ?>"
-                data-logo="<?= currentLogo ?>" data-pic="<?= currentPic ?>" data-services="<?= currentServices ?>">
-                <img src="<?= currentLogo ?>" class="dept-logo">
-                <div class="dept-text">
-                  <p style="font-weight:800; font-size:0.95rem; margin:0; color:var(--text-dark);">
-                    <?= d.name ?>
-                  </p>
-                  <p style="font-weight:800; color:var(--yellow-green-dark); font-size:0.75rem; margin:0;">
-                    <?= d.acronym ?>
-                  </p>
-                </div>
-              </div>
-              <? } ?>
-            </div>
-            <? } ?>
-            <div style="height: 100px; width: 100%;"></div>
-          </div>
+          <!-- Page 0: Offices (rendered by JS) -->
+          <div class="page" id="page0"></div>
 
+          <!-- Page 1: Updates -->
           <div class="page" id="page1">
             <div class="page-heading">Latest Announcements</div>
-            <div class="preview-card"><span class="preview-date">Recently Published</span>
+            <div class="preview-card">
+              <span class="preview-date">Recently Published</span>
               <h3 class="preview-title">Citywide Clean-up Drive Initiated</h3>
-              <p class="preview-desc">Join our localized initiatives as we promote a cleaner and greener Palayan City.
-              </p>
+              <p class="preview-desc">Join our localized initiatives as we promote a cleaner and greener Palayan City.</p>
             </div>
-            <div class="preview-card"><span class="preview-date">Announcements</span>
+            <div class="preview-card">
+              <span class="preview-date">Announcements</span>
               <h3 class="preview-title">New Business Permits Schedule</h3>
               <p class="preview-desc">The BPLD office has adjusted the schedule for the current quarter.</p>
             </div>
-            <a href="https://cityofpalayan.gov.ph/news-and-updates/" target="_blank" class="portal-btn">Access Full
-              Updates Portal</a>
+            <a href="https://cityofpalayan.gov.ph/news-and-updates/" target="_blank" class="portal-btn">Access Full Updates Portal</a>
             <div style="height: 100px; width: 100%;"></div>
           </div>
 
+          <!-- Page 2: Explore -->
           <div class="page" id="page2">
             <div class="page-heading">Discover Palayan</div>
-            <div class="preview-card"><span class="preview-date">Nature</span>
+            <div class="preview-card">
+              <span class="preview-date">Nature</span>
               <h3 class="preview-title">Aulo Dam</h3>
               <p class="preview-desc">Breathtaking views, perfect for serenity and nature photography.</p>
             </div>
-            <div class="preview-card"><span class="preview-date">Recreation</span>
+            <div class="preview-card">
+              <span class="preview-date">Recreation</span>
               <h3 class="preview-title">People's Park</h3>
               <p class="preview-desc">Family-friendly open spaces in the heart of the city.</p>
             </div>
@@ -751,7 +698,7 @@ sd
       </div>
     </div>
 
-    <footer>GOVPH © 2026 CITY OF PALAYAN</footer>
+    <footer>GOVPH &copy; 2026 CITY OF PALAYAN</footer>
 
     <div class="modal-overlay" id="deptModal" onclick="closeModal()">
       <div class="modal-content" onclick="event.stopPropagation()">
@@ -759,26 +706,20 @@ sd
         <div class="modal-body" style="padding: 32px;">
           <div style="text-align:center">
             <img src="" id="mLogo"
-              style="width:75px; height:75px; border-radius:20px; object-fit:contain; background:#f8fafc; padding:8px; border:1px solid #e2e8f0;">
+              style="width:75px; height:75px; border-radius:20px; object-fit:contain; background:#f8fafc; padding:8px; border:1px solid #e2e8f0;" alt="">
             <h2 id="mName" style="font-size:1.15rem; font-weight:800; margin:16px 0 4px; color:var(--text-dark);"></h2>
-            <p id="mAcronym"
-              style="color:var(--yellow-green-dark); font-weight:800; margin:0 0 24px; font-size:0.9rem;"></p>
+            <p id="mAcronym" style="color:var(--yellow-green-dark); font-weight:800; margin:0 0 24px; font-size:0.9rem;"></p>
           </div>
           <img id="mPic" src=""
             style="width:100%; height:160px; object-fit:cover; border-radius:16px; margin-bottom:20px; display:none; border: 1px solid #e2e8f0; cursor: pointer;"
-            onclick="enlargeImage()">
-          <div
-            style="background:#f8fafc; border-radius:16px; padding:18px; font-size:0.9rem; border:1px solid #e2e8f0;">
+            onclick="enlargeImage()" alt="">
+          <div style="background:#f8fafc; border-radius:16px; padding:18px; font-size:0.9rem; border:1px solid #e2e8f0;">
             <p style="margin:0 0 10px;"><strong>Head:</strong> <br><span id="mHead" style="color:#475569;"></span></p>
-            <p style="margin:0 0 10px;"><strong>Location:</strong> <br><span id="mLoc" style="color:#475569;"></span>
-            </p>
+            <p style="margin:0 0 10px;"><strong>Location:</strong> <br><span id="mLoc" style="color:#475569;"></span></p>
             <p style="margin:0;"><strong>Hours:</strong> <br><span id="mTime" style="color:#475569;"></span></p>
-            <div id="mServicesWrapper"
-              style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;">
+            <div id="mServicesWrapper" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;">
               <strong style="color: var(--text-dark);">Services Offered:</strong>
-              <ul id="mServicesList"
-                style="margin: 8px 0 0 0; padding-left: 20px; color: #475569; font-size: 0.85rem; line-height: 1.4;">
-              </ul>
+              <ul id="mServicesList" style="margin: 8px 0 0 0; padding-left: 20px; color: #475569; font-size: 0.85rem; line-height: 1.4;"></ul>
             </div>
           </div>
         </div>
@@ -789,25 +730,21 @@ sd
     <div class="side-menu" id="sideMenu">
       <div class="side-menu-header">
         <h2 class="menu-title">About Palayan</h2>
-        <button class="close-menu-btn" onclick="toggleMenu()">×</button>
+        <button class="close-menu-btn" onclick="toggleMenu()">&times;</button>
       </div>
 
-      <button class="accordion-btn" onclick="toggleAccordion('about')">History & Growth <span
-          class="icon">▼</span></button>
+      <button class="accordion-btn" onclick="toggleAccordion('about')">History &amp; Growth <span class="icon">▼</span></button>
       <div class="accordion-content" id="about-content">
         <div class="accordion-inner">
-          <p>Established in 1965 by RA 4475, Palayan City transitioned from a government stock farm to become the
-            capital of Nueva Ecija.</p>
-          <p>Today, it is evolving into a modern hub with the Palayan City Business Hub leading the way in jobs and
-            investment.</p>
+          <p>Established in 1965 by RA 4475, Palayan City transitioned from a government stock farm to become the capital of Nueva Ecija.</p>
+          <p>Today, it is evolving into a modern hub with the Palayan City Business Hub leading the way in jobs and investment.</p>
         </div>
       </div>
 
       <button class="accordion-btn" onclick="toggleAccordion('vision')">Vision <span class="icon">▼</span></button>
       <div class="accordion-content" id="vision-content">
         <div class="accordion-inner">
-          <p>The vibrant Capital City and employment center of Nueva Ecija; thriving through an agro-industrial and
-            Information Technology economy; enabled by disaster-resilient and organized urban growth.</p>
+          <p>The vibrant Capital City and employment center of Nueva Ecija; thriving through an agro-industrial and Information Technology economy; enabled by disaster-resilient and organized urban growth.</p>
           <p style="font-weight: 800; color: var(--yellow-green-dark);">Tungo sa Bagong Palayan, Now Na!</p>
         </div>
       </div>
@@ -815,26 +752,21 @@ sd
       <button class="accordion-btn" onclick="toggleAccordion('mission')">Mission <span class="icon">▼</span></button>
       <div class="accordion-content" id="mission-content">
         <div class="accordion-inner">
-          <p>As the steward of the vision, the City Government shall transform Palayan into a modern, sustainable and
-            resilient city that espouses the balanced management of the built and unbuilt environment to ensure
-            equitable growth.</p>
+          <p>As the steward of the vision, the City Government shall transform Palayan into a modern, sustainable and resilient city that espouses the balanced management of the built and unbuilt environment to ensure equitable growth.</p>
         </div>
       </div>
 
       <button class="accordion-btn" onclick="toggleAccordion('mandate')">Mandate <span class="icon">▼</span></button>
       <div class="accordion-content" id="mandate-content">
         <div class="accordion-inner">
-          <p>To plan and implement programs, projects, and activities to alleviate poverty, to promote and ensure the
-            general welfare and interest of its people.</p>
+          <p>To plan and implement programs, projects, and activities to alleviate poverty, to promote and ensure the general welfare and interest of its people.</p>
         </div>
       </div>
 
-      <button class="accordion-btn" onclick="toggleAccordion('pledge')">Service Pledge <span
-          class="icon">▼</span></button>
+      <button class="accordion-btn" onclick="toggleAccordion('pledge')">Service Pledge <span class="icon">▼</span></button>
       <div class="accordion-content" id="pledge-content">
         <div class="accordion-inner">
-          <p>We pledge to serve our people with utmost diligence, dignity, integrity, respect, and with the highest
-            degree of professionalism.</p>
+          <p>We pledge to serve our people with utmost diligence, dignity, integrity, respect, and with the highest degree of professionalism.</p>
           <p>We commit to provide accessible, accurate, and reasonable information at all times.</p>
         </div>
       </div>
@@ -842,11 +774,110 @@ sd
       <div style="height: 60px; width: 100%; flex-shrink: 0;"></div>
     </div>
 
-    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()"><span
-        class="lightbox-close">&times;</span><img class="lightbox-content" id="lightboxImg"></div>
+    <div class="lightbox-overlay" id="lightboxOverlay" onclick="closeLightbox()">
+      <span class="lightbox-close">&times;</span>
+      <img class="lightbox-content" id="lightboxImg" alt="">
+    </div>
   </div>
 
   <script>
+    // ─── LOGO MAP ─────────────────────────────────────────────────────────────
+    // Maps department acronym → image file from the public/ folder
+    const logoMap = {
+      "CASSO":  "assessor.jpg",
+      "CTO":    "Treasure.jpg",
+      "CDRRMO": "cdrrmo.jpg",
+      "CCR":    "civil_registrar.jpg",
+      "CSWD":   "cswd.jpg",
+      "CEO":    "engineering.jpg",
+      "ICT":    "ict.png",
+      "CPDO":   "planning.jpg",
+      "CTD":    "tourism.jpg",
+      "TMPSD":  "traffic.jpg",
+      "CVO":    "veterinary.jpg",
+      "LEPIDO": "Ledipo.png"
+    };
+
+    // ─── DEPARTMENT DATA ──────────────────────────────────────────────────────
+    const departments = [
+      { cat: "EXECUTIVE", name: "City Mayor's Office", acronym: "CMO", head: "Olga Rose Manuel - Berdon", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Issuance of Mayor's Clearance", "Solemnization of Marriage", "Financial Assistance"] },
+      { cat: "EXECUTIVE", name: "Sangguniang Panlungsod", acronym: "SP", head: "Rufo S. Elegado", loc: "Second Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Legislative Services", "Resolutions and Ordinances"] },
+      { cat: "ECONOMIC DEVELOPMENT", name: "City Agriculturist's Office", acronym: "CAGO", head: "Esmenia S. Lulu", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Seed Distribution", "Farming Consultations"] },
+      { cat: "ECONOMIC DEVELOPMENT", name: "City Veterinarian's Office", acronym: "CVO", head: "Dr. Celso D. Mananggit", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Anti-Rabies Vaccination", "Livestock Health Services"] },
+      { cat: "ECONOMIC DEVELOPMENT", name: "Local Economic Development and Investment Promotions Office", acronym: "LEPIDO", head: "Fercilyn Grospe", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Business Investment Inquiries"] },
+      { cat: "ECONOMIC DEVELOPMENT", name: "City Labor & Employment Office", acronym: "CLEO", head: "Mar-Sem S. Mendillo", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Job Fairs", "Employment Referrals"] },
+      { cat: "ECONOMIC DEVELOPMENT", name: "City Tourism Division", acronym: "CTD", head: "Eunice Nicole Alcantara", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Tourism Promotions", "Event Coordination"] },
+      { cat: "FISCAL MANAGEMENT", name: "City Accountant's Office", acronym: "CACO", head: "Christina R. Yambot", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Internal Audit", "Financial Reporting"] },
+      { cat: "FISCAL MANAGEMENT", name: "City Assessor's Office", acronym: "CASSO", head: "Emmanuel A. Aduna", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Real Property Assessment", "Tax Declarations"] },
+      { cat: "FISCAL MANAGEMENT", name: "City Budget Office", acronym: "CBO", head: "Nicky S. Sagnip", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Budget Allocation and Review"] },
+      { cat: "FISCAL MANAGEMENT", name: "Business Permit & Licensing Division", acronym: "BPLD", head: "Maria Raquel Sagnit", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["New Business Permits", "Business Permit Renewals", "Retirement of Business"] },
+      { cat: "FISCAL MANAGEMENT", name: "City Treasurer's Office", acronym: "CTO", head: "Mary Jane F. Villareal", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Payment of Real Property Taxes", "Collection of Fees and Charges"] },
+      { cat: "INFRASTRUCTURE & SAFETY", name: "Traffic Management & Public Safety Division", acronym: "TMPSD", head: "Thea Bantegui", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Traffic Apprehensions", "Road Safety Assistance"] },
+      { cat: "INFRASTRUCTURE & SAFETY", name: "City Engineering Office", acronym: "CEO", head: "Engr. Alexander Dela Merced", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Building Permits", "Occupancy Permits", "Infrastructure Projects"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "City Planning & Development Office", acronym: "CPDO", head: "Arch. Margarita A. Angeles", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Zoning Clearances", "Comprehensive Land Use Plan"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "City General Services Office", acronym: "CGSO", head: "Reynaldo C. Alberto", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Procurement", "Asset Management"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "City Legal Office", acronym: "CLO", head: "Atty. John Kenner M. Mendoza", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Legal Counseling", "Contract Review"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "City Human Resource & Management Office", acronym: "CHRMO", head: "Dudley S. Romero", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Job Vacancies", "Employee Records"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "Library Division", acronym: "LIB", head: "Alicia L. Estanislao", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Public Reading Area", "Research Assistance"] },
+      { cat: "PUBLIC ADMINISTRATION", name: "Information & Technology Division", acronym: "ICT", head: "Feliciano C. Ramos Jr.", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["System Maintenance", "Tech Support"] },
+      { cat: "SOCIAL SERVICES", name: "City Disaster Risk Reduction Office", acronym: "CDRRMO", head: "Ferdinand B. Hilado", loc: "Outside Main Bldg", time: "24/7", services: ["Emergency Rescue", "Disaster Preparedness Training"] },
+      { cat: "SOCIAL SERVICES", name: "City Health Office", acronym: "CHO", head: "Dra. Shiela B. Flores", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Medical Consultations", "Immunizations", "Issuance of Medical/Health Certificates"] },
+      { cat: "SOCIAL SERVICES", name: "City Social Welfare & Development Office", acronym: "CSWD", head: "Maria Teresa Ramos", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Senior Citizen ID Application", "Solo Parent ID", "Assistance in Crisis Situations (AICS)"] },
+      { cat: "SOCIAL SERVICES", name: "City Civil Registrar Office", acronym: "CCR", head: "Loribelle C. De Guzman", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Birth Registration", "Marriage License", "Death Registration"] }
+    ];
+
+    // ─── RENDER OFFICES PAGE ──────────────────────────────────────────────────
+    function renderOffices() {
+      const grouped = {};
+      departments.forEach(d => {
+        if (!grouped[d.cat]) grouped[d.cat] = [];
+        grouped[d.cat].push(d);
+      });
+
+      const page0 = document.getElementById('page0');
+      let html = '';
+      for (const cat in grouped) {
+        html += `<div class="category-section">`;
+        html += `<span class="category-label">${cat}</span>`;
+        grouped[cat].forEach(d => {
+          const logo = logoMap[d.acronym] || '';
+          const logoSrc = logo
+            ? logo
+            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png';
+          const services = (d.services && d.services.length > 0) ? d.services.join('|') : '';
+          html += `
+            <div class="dept-card"
+              onclick="openModal(this)"
+              data-name="${escHtml(d.name)}"
+              data-acronym="${escHtml(d.acronym)}"
+              data-head="${escHtml(d.head)}"
+              data-loc="${escHtml(d.loc)}"
+              data-time="${escHtml(d.time)}"
+              data-logo="${escHtml(logoSrc)}"
+              data-pic=""
+              data-services="${escHtml(services)}">
+              <img src="${logoSrc}" class="dept-logo" alt="${escHtml(d.acronym)} logo">
+              <div class="dept-text">
+                <p style="font-weight:800; font-size:0.95rem; margin:0; color:var(--text-dark);">${escHtml(d.name)}</p>
+                <p style="font-weight:800; color:var(--yellow-green-dark); font-size:0.75rem; margin:0;">${escHtml(d.acronym)}</p>
+              </div>
+            </div>`;
+        });
+        html += `</div>`;
+      }
+      html += `<div style="height: 100px; width: 100%;"></div>`;
+      page0.innerHTML = html;
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
+    // ─── SCROLL FADE ──────────────────────────────────────────────────────────
     const scrollContainer = document.getElementById('scrollContainer');
     const headerContent = document.getElementById('headerContent');
     const searchContainer = document.getElementById('searchContainer');
@@ -858,6 +889,7 @@ sd
       headerContent.style.opacity = Math.max(0, 1 - (p * 1.5));
     }, { passive: true });
 
+    // ─── TABS / SWIPE ─────────────────────────────────────────────────────────
     function swipe(idx) {
       const track = document.getElementById('track');
       const tabs = document.querySelectorAll('.tab-btn');
@@ -880,6 +912,7 @@ sd
       });
     }
 
+    // ─── SEARCH / FILTER ─────────────────────────────────────────────────────
     function filterDepts() {
       let val = searchInp.value.toLowerCase().trim();
       document.querySelectorAll('.category-section').forEach(section => {
@@ -895,6 +928,7 @@ sd
       });
     }
 
+    // ─── MODAL ────────────────────────────────────────────────────────────────
     function openModal(el) {
       document.getElementById('mName').textContent = el.dataset.name;
       document.getElementById('mAcronym').textContent = el.dataset.acronym;
@@ -925,6 +959,7 @@ sd
       document.getElementById('deptModal').style.pointerEvents = 'none';
     }
 
+    // ─── SIDE MENU ────────────────────────────────────────────────────────────
     function toggleMenu() {
       const menu = document.getElementById('sideMenu');
       const overlay = document.getElementById('sideMenuOverlay');
@@ -932,6 +967,7 @@ sd
       overlay.classList.toggle('open');
     }
 
+    // ─── ACCORDION ────────────────────────────────────────────────────────────
     function toggleAccordion(id) {
       const content = document.getElementById(id + '-content');
       const btn = content.previousElementSibling;
@@ -946,6 +982,7 @@ sd
       }
     }
 
+    // ─── LIGHTBOX ─────────────────────────────────────────────────────────────
     function enlargeImage() {
       const picSrc = document.getElementById('mPic').src;
       if (picSrc) {
@@ -957,6 +994,9 @@ sd
     function closeLightbox() {
       document.getElementById('lightboxOverlay').classList.remove('show');
     }
+
+    // ─── INIT ─────────────────────────────────────────────────────────────────
+    renderOffices();
   </script>
 </body>
 
