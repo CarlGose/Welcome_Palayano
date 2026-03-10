@@ -5,91 +5,125 @@ import './index.css';
 const defaultLogoDataUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png";
 const defaultBannerBgUrl = "";
 
-// Local image mapping from public/Web App/ folder
+import imgCMO from './assets/Web App/CMO.jpg';
+import imgSP from './assets/Web App/SP.jpg';
+import imgCAGO from './assets/Web App/CAgO.jpg';
+import imgCVO from './assets/Web App/CVO.jpg';
+import imgLEPIDO from './assets/Web App/LEPIDO.jpg';
+import imgCLEO from './assets/Web App/CLEO.jpg';
+import imgCTD from './assets/Web App/DCDH.jpg';
+import imgCACO from './assets/Web App/CAccO.jpg';
+import imgCASSO from './assets/Web App/CSSAO.jpg';
+import imgCBO from './assets/Web App/CBO.jpg';
+import imgCCR from './assets/Web App/CCR, BPLC, CAssO, CTO.jpg';
+import imgTMPSD from './assets/Web App/TMPSD.jpg';
+import imgCEO from './assets/Web App/CEO.jpg';
+import imgCPDO from './assets/Web App/CPDO.jpg';
+import imgCGSO from './assets/Web App/CGSO.jpg';
+import imgCLO from './assets/Web App/CLO.jpg';
+import imgCHRMO from './assets/Web App/CHRMO.jpg';
+import imgLIB from './assets/Web App/LIB.jpeg';
+import imgICT from './assets/Web App/ICT.jpg';
+import imgCDRRMO from './assets/Web App/CDRRMO.jpeg';
+import imgCHO from './assets/Web App/CHO.jpeg';
+import imgCSWD from './assets/Web App/CSWDO.jpeg';
+
+import logoCASSO from './assets/LOGOS/assessor.jpg';
+import logoCTO from './assets/LOGOS/Treasure.jpg';
+import logoCDRRMO from './assets/LOGOS/cdrrmo.jpg';
+import logoCCR from './assets/LOGOS/civil_registrar.jpg';
+import logoCSWD from './assets/LOGOS/cswd.jpg';
+import logoCEO from './assets/LOGOS/engineering.jpg';
+import logoICT from './assets/LOGOS/ict.png';
+import logoCPDO from './assets/LOGOS/planning.jpg';
+import logoCTD from './assets/LOGOS/tourism.jpg';
+import logoTMPSD from './assets/LOGOS/traffic.jpg';
+import logoCVO from './assets/LOGOS/veterinary.jpg';
+import logoLEPIDO from './assets/LOGOS/Ledipo.png';
+import logoSP from './assets/LOGOS/Sangguniang-panglungsod.png';
+import logoCAGO from './assets/LOGOS/agriculture.png';
+import logoCHO from './assets/LOGOS/city-health.png';
+import logoCLEO from './assets/LOGOS/city-labor.png';
+import logoLIB from './assets/LOGOS/library.jpg';
+
+// Local image mapping via import
 const localImageMap = {
-  CMO: "/Web App/CMO.jpg",
-  SP: "/Web App/SP.jpg",
-  CAGO: "/Web App/CAgO.jpg",
-  CVO: "/Web App/CVO.jpg",
-  LEPIDO: "/Web App/LEPIDO.jpg",
-  CLEO: "/Web App/CLEO.jpg",
-  CTD: "/Web App/DCDH.jpg",
-  CACO: "/Web App/CAccO.jpg",
-  CASSO: "/Web App/CSSAO.jpg",
-  CBO: "/Web App/CBO.jpg",
-  BPLD: "/Web App/CCR, BPLC, CAssO, CTO.jpg",
-  CTO: "/Web App/CCR, BPLC, CAssO, CTO.jpg",
-  TMPSD: "/Web App/TMPSD.jpg",
-  CEO: "/Web App/CEO.jpg",
-  CPDO: "/Web App/CPDO.jpg",
-  CGSO: "/Web App/CGSO.jpg",
-  CLO: "/Web App/CLO.jpg",
-  CHRMO: "/Web App/CHRMO.jpg",
-  LIB: "/Web App/LIB.jpeg",
-  ICT: "/Web App/ICT.jpg",
-  CDRRMO: "/Web App/CDRRMO.jpeg",
-  CHO: "/Web App/CHO.jpeg",
-  CSWD: "/Web App/CSWDO.jpeg",
-  CCR: "/Web App/CCR, BPLC, CAssO, CTO.jpg",
+  CMO: imgCMO,
+  SP: imgSP,
+  CAGO: imgCAGO,
+  CVO: imgCVO,
+  LEPIDO: imgLEPIDO,
+  CLEO: imgCLEO,
+  CTD: imgCTD,
+  CACO: imgCACO,
+  CASSO: imgCASSO,
+  CBO: imgCBO,
+  BPLD: imgCCR, // Shared image mapping
+  CTO: imgCCR,  // Shared image mapping
+  TMPSD: imgTMPSD,
+  CEO: imgCEO,
+  CPDO: imgCPDO,
+  CGSO: imgCGSO,
+  CLO: imgCLO,
+  CHRMO: imgCHRMO,
+  LIB: imgLIB,
+  ICT: imgICT,
+  CDRRMO: imgCDRRMO,
+  CHO: imgCHO,
+  CSWD: imgCSWD,
+  CCR: imgCCR,
 };
 
-// Local logo mapping from public/LOGOS/ folder
+// Local logo mapping via import
 const localLogoMap = {
-  CASSO: "/LOGOS/assessor.jpg",
-  CTO: "/LOGOS/Treasure.jpg",
-  CDRRMO: "/LOGOS/cdrrmo.jpg",
-  CCR: "/LOGOS/civil_registrar.jpg",
-  CSWD: "/LOGOS/cswd.jpg",
-  CEO: "/LOGOS/engineering.jpg",
-  ICT: "/LOGOS/ict.png",
-  CPDO: "/LOGOS/planning.jpg",
-  CTD: "/LOGOS/tourism.jpg",
-  TMPSD: "/LOGOS/traffic.jpg",
-  CVO: "/LOGOS/veterinary.jpg",
-  LEPIDO: "/LOGOS/Ledipo.png",
-  SP: "/LOGOS/Sangguniang-panglungsod.png",
-  CAGO: "/LOGOS/agriculture.png",
-  CHO: "/LOGOS/city-health.png",
-  CLEO: "/LOGOS/city-labor.png",
-  LIB: "/LOGOS/library.jpg",
+  CASSO: logoCASSO,
+  CTO: logoCTO,
+  CDRRMO: logoCDRRMO,
+  CCR: logoCCR,
+  CSWD: logoCSWD,
+  CEO: logoCEO,
+  ICT: logoICT,
+  CPDO: logoCPDO,
+  CTD: logoCTD,
+  TMPSD: logoTMPSD,
+  CVO: logoCVO,
+  LEPIDO: logoLEPIDO,
+  SP: logoSP,
+  CAGO: logoCAGO,
+  CHO: logoCHO,
+  CLEO: logoCLEO,
+  LIB: logoLIB,
 };
 
 const initialDepartmentsData = [
-  { cat: "EXECUTIVE", name: "City Mayor's Office", acronym: "CMO", logo: null, pic: "/Web App/CMO.jpg", head: "Olga Rose Manuel - Berdon", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Issuance of Mayor's Clearance", "Solemnization of Marriage", "Financial Assistance"] },
-  { cat: "EXECUTIVE", name: "Sangguniang Panlungsod", acronym: "SP", logo: "/LOGOS/Sangguniang-panglungsod.png", pic: "/Web App/SP.jpg", head: "Rufo S. Elegado", loc: "Second Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Legislative Services", "Resolutions and Ordinances"] },
-  { cat: "ECONOMIC DEVELOPMENT", name: "City Agriculturist's Office", acronym: "CAGO", logo: "/LOGOS/agriculture.png", pic: "/Web App/CAgO.jpg", head: "Esmenia S. Lulu", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Seed Distribution", "Farming Consultations"] },
-  { cat: "ECONOMIC DEVELOPMENT", name: "City Veterinarian's Office", acronym: "CVO", logo: "/LOGOS/veterinary.jpg", pic: "/Web App/CVO.jpg", head: "Dr. Celso D. Mananggit", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Anti-Rabies Vaccination", "Livestock Health Services"] },
-  { cat: "ECONOMIC DEVELOPMENT", name: "Local Economic Development and Investment Promotions Office", acronym: "LEPIDO", logo: "/LOGOS/Ledipo.png", pic: "/Web App/LEPIDO.jpg", head: "Fercilyn Grospe", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Business Investment Inquiries"] },
-  { cat: "ECONOMIC DEVELOPMENT", name: "City Labor & Employment Office", acronym: "CLEO", logo: "/LOGOS/city-labor.png", pic: "/Web App/CLEO.jpg", head: "Mar-Sem S. Mendillo", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Job Fairs", "Employment Referrals"] },
-  { cat: "ECONOMIC DEVELOPMENT", name: "City Tourism Division", acronym: "CTD", logo: "/LOGOS/tourism.jpg", pic: "/Web App/DCDH.jpg", head: "Eunice Nicole Alcantara", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Tourism Promotions", "Event Coordination"] },
-  { cat: "FISCAL MANAGEMENT", name: "City Accountant's Office", acronym: "CACO", logo: null, pic: "/Web App/CAccO.jpg", head: "Christina R. Yambot", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Internal Audit", "Financial Reporting"] },
-  { cat: "FISCAL MANAGEMENT", name: "City Assessor's Office", acronym: "CASSO", logo: "/LOGOS/assessor.jpg", pic: "/Web App/CSSAO.jpg", head: "Emmanuel A. Aduna", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Real Property Assessment", "Tax Declarations"] },
-  { cat: "FISCAL MANAGEMENT", name: "City Budget Office", acronym: "CBO", logo: null, pic: "/Web App/CBO.jpg", head: "Nicky S. Sagnip", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Budget Allocation and Review"] },
-  { cat: "FISCAL MANAGEMENT", name: "Business Permit & Licensing Division", acronym: "BPLD", logo: null, pic: "/Web App/CCR, BPLC, CAssO, CTO.jpg", head: "Maria Raquel Sagnit", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["New Business Permits", "Business Permit Renewals", "Retirement of Business"] },
-  { cat: "FISCAL MANAGEMENT", name: "City Treasurer's Office", acronym: "CTO", logo: "/LOGOS/Treasure.jpg", pic: "/Web App/CCR, BPLC, CAssO, CTO.jpg", head: "Mary Jane F. Villareal", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Payment of Real Property Taxes", "Collection of Fees and Charges"] },
-  { cat: "INFRASTRUCTURE & SAFETY", name: "Traffic Management & Public Safety Division", acronym: "TMPSD", logo: "/LOGOS/traffic.jpg", pic: "/Web App/TMPSD.jpg", head: "Thea Bantegui", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Traffic Apprehensions", "Road Safety Assistance"] },
-  { cat: "INFRASTRUCTURE & SAFETY", name: "City Engineering Office", acronym: "CEO", logo: "/LOGOS/engineering.jpg", pic: "/Web App/CEO.jpg", head: "Engr. Alexander Dela Merced", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Building Permits", "Occupancy Permits", "Infrastructure Projects"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "City Planning & Development Office", acronym: "CPDO", logo: "/LOGOS/planning.jpg", pic: "/Web App/CPDO.jpg", head: "Arch. Margarita A. Angeles", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Zoning Clearances", "Comprehensive Land Use Plan"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "City General Services Office", acronym: "CGSO", logo: null, pic: "/Web App/CGSO.jpg", head: "Reynaldo C. Alberto", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Procurement", "Asset Management"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "City Legal Office", acronym: "CLO", logo: null, pic: "/Web App/CLO.jpg", head: "Atty. John Kenner M. Mendoza", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Legal Counseling", "Contract Review"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "City Human Resource & Management Office", acronym: "CHRMO", logo: null, pic: "/Web App/CHRMO.jpg", head: "Dudley S. Romero", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Job Vacancies", "Employee Records"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "Library Division", acronym: "LIB", logo: "/LOGOS/library.jpg", pic: "/Web App/LIB.jpeg", head: "Alicia L. Estanislao", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Public Reading Area", "Research Assistance"] },
-  { cat: "PUBLIC ADMINISTRATION", name: "Information & Technology Division", acronym: "ICT", logo: "/LOGOS/ict.png", pic: "/Web App/ICT.jpg", head: "Feliciano C. Ramos Jr.", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["System Maintenance", "Tech Support"] },
-  { cat: "SOCIAL SERVICES", name: "City Disaster Risk Reduction Office", acronym: "CDRRMO", logo: "/LOGOS/cdrrmo.jpg", pic: "/Web App/CDRRMO.jpeg", head: "Ferdinand B. Hilado", loc: "Outside Main Bldg", time: "24/7", services: ["Emergency Rescue", "Disaster Preparedness Training"] },
-  { cat: "SOCIAL SERVICES", name: "City Health Office", acronym: "CHO", logo: "/LOGOS/city-health.png", pic: "/Web App/CHO.jpeg", head: "Dra. Shiela B. Flores", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Medical Consultations", "Immunizations", "Issuance of Medical/Health Certificates"] },
-  { cat: "SOCIAL SERVICES", name: "City Social Welfare & Development Office", acronym: "CSWD", logo: "/LOGOS/cswd.jpg", pic: "/Web App/CSWDO.jpeg", head: "Maria Teresa Ramos", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Senior Citizen ID Application", "Solo Parent ID", "Assistance in Crisis Situations (AICS)"] },
-  { cat: "SOCIAL SERVICES", name: "City Civil Registrar Office", acronym: "CCR", logo: "/LOGOS/civil_registrar.jpg", pic: "/Web App/CCR, BPLC, CAssO, CTO.jpg", head: "Loribelle C. De Guzman", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Birth Registration", "Marriage License", "Death Registration"] }
+  { cat: "EXECUTIVE", name: "City Mayor's Office", acronym: "CMO", logo: null, pic: imgCMO, head: "Olga Rose Manuel - Berdon", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Issuance of Mayor's Clearance", "Solemnization of Marriage", "Financial Assistance"] },
+  { cat: "EXECUTIVE", name: "Sangguniang Panlungsod", acronym: "SP", logo: logoSP, pic: imgSP, head: "Rufo S. Elegado", loc: "Second Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Legislative Services", "Resolutions and Ordinances"] },
+  { cat: "ECONOMIC DEVELOPMENT", name: "City Agriculturist's Office", acronym: "CAGO", logo: logoCAGO, pic: imgCAGO, head: "Esmenia S. Lulu", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Seed Distribution", "Farming Consultations"] },
+  { cat: "ECONOMIC DEVELOPMENT", name: "City Veterinarian's Office", acronym: "CVO", logo: logoCVO, pic: imgCVO, head: "Dr. Celso D. Mananggit", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Anti-Rabies Vaccination", "Livestock Health Services"] },
+  { cat: "ECONOMIC DEVELOPMENT", name: "Local Economic Development and Investment Promotions Office", acronym: "LEPIDO", logo: logoLEPIDO, pic: imgLEPIDO, head: "Fercilyn Grospe", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Business Investment Inquiries"] },
+  { cat: "ECONOMIC DEVELOPMENT", name: "City Labor & Employment Office", acronym: "CLEO", logo: logoCLEO, pic: imgCLEO, head: "Mar-Sem S. Mendillo", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Job Fairs", "Employment Referrals"] },
+  { cat: "ECONOMIC DEVELOPMENT", name: "City Tourism Division", acronym: "CTD", logo: logoCTD, pic: imgCTD, head: "Eunice Nicole Alcantara", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Tourism Promotions", "Event Coordination"] },
+  { cat: "FISCAL MANAGEMENT", name: "City Accountant's Office", acronym: "CACO", logo: null, pic: imgCACO, head: "Christina R. Yambot", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Internal Audit", "Financial Reporting"] },
+  { cat: "FISCAL MANAGEMENT", name: "City Assessor's Office", acronym: "CASSO", logo: logoCASSO, pic: imgCASSO, head: "Emmanuel A. Aduna", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Real Property Assessment", "Tax Declarations"] },
+  { cat: "FISCAL MANAGEMENT", name: "City Budget Office", acronym: "CBO", logo: null, pic: imgCBO, head: "Nicky S. Sagnip", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Budget Allocation and Review"] },
+  { cat: "FISCAL MANAGEMENT", name: "Business Permit & Licensing Division", acronym: "BPLD", logo: null, pic: imgCCR, head: "Maria Raquel Sagnit", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["New Business Permits", "Business Permit Renewals", "Retirement of Business"] },
+  { cat: "FISCAL MANAGEMENT", name: "City Treasurer's Office", acronym: "CTO", logo: logoCTO, pic: imgCCR, head: "Mary Jane F. Villareal", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Payment of Real Property Taxes", "Collection of Fees and Charges"] },
+  { cat: "INFRASTRUCTURE & SAFETY", name: "Traffic Management & Public Safety Division", acronym: "TMPSD", logo: logoTMPSD, pic: imgTMPSD, head: "Thea Bantegui", loc: "Second Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Traffic Apprehensions", "Road Safety Assistance"] },
+  { cat: "INFRASTRUCTURE & SAFETY", name: "City Engineering Office", acronym: "CEO", logo: logoCEO, pic: imgCEO, head: "Engr. Alexander Dela Merced", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["Building Permits", "Occupancy Permits", "Infrastructure Projects"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "City Planning & Development Office", acronym: "CPDO", logo: logoCPDO, pic: imgCPDO, head: "Arch. Margarita A. Angeles", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Zoning Clearances", "Comprehensive Land Use Plan"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "City General Services Office", acronym: "CGSO", logo: null, pic: imgCGSO, head: "Reynaldo C. Alberto", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Procurement", "Asset Management"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "City Legal Office", acronym: "CLO", logo: null, pic: imgCLO, head: "Atty. John Kenner M. Mendoza", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Legal Counseling", "Contract Review"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "City Human Resource & Management Office", acronym: "CHRMO", logo: null, pic: imgCHRMO, head: "Dudley S. Romero", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Job Vacancies", "Employee Records"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "Library Division", acronym: "LIB", logo: logoLIB, pic: imgLIB, head: "Alicia L. Estanislao", loc: "Second Floor", time: "8:00 AM - 5:00 PM", services: ["Public Reading Area", "Research Assistance"] },
+  { cat: "PUBLIC ADMINISTRATION", name: "Information & Technology Division", acronym: "ICT", logo: logoICT, pic: imgICT, head: "Feliciano C. Ramos Jr.", loc: "Ground Floor - Left", time: "8:00 AM - 5:00 PM", services: ["System Maintenance", "Tech Support"] },
+  { cat: "SOCIAL SERVICES", name: "City Disaster Risk Reduction Office", acronym: "CDRRMO", logo: logoCDRRMO, pic: imgCDRRMO, head: "Ferdinand B. Hilado", loc: "Outside Main Bldg", time: "24/7", services: ["Emergency Rescue", "Disaster Preparedness Training"] },
+  { cat: "SOCIAL SERVICES", name: "City Health Office", acronym: "CHO", logo: logoCHO, pic: imgCHO, head: "Dra. Shiela B. Flores", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Medical Consultations", "Immunizations", "Issuance of Medical/Health Certificates"] },
+  { cat: "SOCIAL SERVICES", name: "City Social Welfare & Development Office", acronym: "CSWD", logo: logoCSWD, pic: imgCSWD, head: "Maria Teresa Ramos", loc: "Outside Main Bldg", time: "8:00 AM - 5:00 PM", services: ["Senior Citizen ID Application", "Solo Parent ID", "Assistance in Crisis Situations (AICS)"] },
+  { cat: "SOCIAL SERVICES", name: "City Civil Registrar Office", acronym: "CCR", logo: logoCCR, pic: imgCCR, head: "Loribelle C. De Guzman", loc: "Ground Floor - Right", time: "8:00 AM - 5:00 PM", services: ["Birth Registration", "Marriage License", "Death Registration"] }
 ];
 
 function getDirectDriveUrl(url) {
-  if (url && typeof url === 'string' && url.includes('drive.google.com')) {
-    let id = "";
-    if (url.includes('id=')) { id = url.split('id=')[1].split('&')[0]; }
-    else { let parts = url.split('/d/'); if (parts.length > 1) { id = parts[1].split('/')[0]; } }
-    // Using lh3.googleusercontent.com to return image file without auth walls natively
-    return id ? "https://lh3.googleusercontent.com/d/" + id : url;
-  }
-  return url;
+  return url; // Bypassed
 }
 
 export default function App() {
@@ -108,7 +142,7 @@ export default function App() {
   const scrollContainerRef = useRef(null);
 
   useEffect(() => {
-    // Fetch CSV data from Google Sheets
+    // Fetch CSV data from Google Sheets strictly for locations and services
     const sheetId = "1BaKZiL3g7E5bqwjgfp7Gr5e-2OFQKYYoJ6qtIhfpu7M";
     const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/export?format=csv`;
 
@@ -117,34 +151,20 @@ export default function App() {
       header: false,
       complete: (results) => {
         const data = results.data;
-        let pLogo = defaultLogoDataUrl;
-        let pBanner = defaultBannerBgUrl;
-        const logoMap = {};
-        const pictureMap = {};
         const locationMap = {};
 
         for (let i = 0; i < data.length; i++) {
           const row = data[i];
           const identifier = row[0] ? row[0].toString().trim() : "";
-          if (identifier === "1.1") {
-            // Overriding default seal bypassed. Used fixed defaultLogoDataUrl instead.
-            // if (row[1]) pLogo = getDirectDriveUrl(row[1].toString());
-            pLogo = defaultLogoDataUrl;
-            if (row[2]) pBanner = getDirectDriveUrl(row[2].toString());
-          } else if (identifier) {
-            if (row[1]) logoMap[identifier] = getDirectDriveUrl(row[1].toString());
-            if (row[2]) pictureMap[identifier] = getDirectDriveUrl(row[2].toString());
+          if (identifier && identifier !== "1.1") {
             if (row[3]) {
               locationMap[identifier] = row[3].toString().trim();
             }
           }
         }
 
-        setLogoDataUrl(pLogo);
-        setBannerBgUrl(pBanner);
-
-        // Update departments array based on fetched mapping
-        // Local images perfectly override Google Drive links
+        // Update departments array
+        // Strictly use locally imported assets from the public map! No Google Drive URLs.
         const updatedDepts = initialDepartmentsData.map(dept => {
           return {
             ...dept,
@@ -222,18 +242,13 @@ export default function App() {
                   className="dept-card"
                   onClick={() => setSelectedDept(d)}
                 >
-                  {deptImg ? (
-                    <div className="dept-card-thumb">
-                      <img src={deptImg} alt={d.name} />
-                    </div>
-                  ) : (
-                    <img src={deptLogo} className="dept-logo" alt={d.name + ' logo'} />
-                  )}
-                  <div className="dept-text" style={{ flex: 1, paddingRight: '10px' }}>
+                  <div className="dept-card-thumb" style={{ background: '#f8fafc', padding: '6px', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img src={deptLogo} alt={d.acronym + ' logo'} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                  </div>
+                  <div className="dept-text" style={{ flex: 1, paddingLeft: '15px' }}>
                     <p style={{ fontWeight: 800, fontSize: '0.95rem', margin: 0, color: 'var(--text-dark)' }}>{d.name}</p>
                     <p style={{ fontWeight: 800, color: 'var(--yellow-green-dark)', fontSize: '0.75rem', margin: 0 }}>{d.acronym}</p>
                   </div>
-                  <img src={deptLogo} style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: '50%', background: 'white', border: '2px solid #e2e8f0', padding: '3px', flexShrink: 0, boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }} alt={d.acronym + ' logo'} />
                 </div>
               );
             })}
