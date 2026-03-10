@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="description" content="Palayan City Government Official Directory — find offices, departments, and services.">
+  <meta name="description"
+    content="Palayan City Government Official Directory — find offices, departments, and services.">
   <title>Palayan City Directory</title>
   <base target="_top">
   <link
@@ -242,9 +243,19 @@
     }
 
     @keyframes tab-bounce {
-      0% { transform: scale(1); }
-      50% { transform: scale(0.92); opacity: 0.8; }
-      100% { transform: scale(1); opacity: 1; }
+      0% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(0.92);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .search-container {
@@ -432,7 +443,9 @@
       overflow-y: auto;
     }
 
-    .side-menu.open { right: 0; }
+    .side-menu.open {
+      right: 0;
+    }
 
     .side-menu-overlay.open {
       opacity: 1;
@@ -493,7 +506,9 @@
       font-size: 0.8rem;
     }
 
-    .accordion-btn.active .icon { transform: rotate(180deg); }
+    .accordion-btn.active .icon {
+      transform: rotate(180deg);
+    }
 
     .accordion-content {
       max-height: 0;
@@ -511,65 +526,246 @@
       line-height: 1.6;
     }
 
-    .accordion-inner p { margin: 0 0 12px 0; }
-    .accordion-inner p:last-child { margin-bottom: 0; }
+    .accordion-inner p {
+      margin: 0 0 12px 0;
+    }
 
+    .accordion-inner p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* ====== REDESIGNED MODAL ====== */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(15, 23, 42, 0.6);
+      background: rgba(10, 20, 30, 0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       display: flex;
       align-items: center;
       justify-content: center;
       z-index: 2000;
       opacity: 0;
       pointer-events: none;
-      transition: 0.3s;
+      transition: opacity 0.35s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .modal-content {
       background: white;
-      width: 90%;
-      max-width: 380px;
-      border-radius: 28px;
+      width: 92%;
+      max-width: 390px;
+      border-radius: 24px;
       position: relative;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      max-height: 85vh;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+      max-height: 88vh;
       display: flex;
       flex-direction: column;
       overflow: hidden;
+      transform: translateY(30px) scale(0.96);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
     }
 
-    .modal-header {
-      position: absolute;
-      top: 0;
-      left: 0;
+    .modal-overlay.active .modal-content {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .modal-hero {
+      position: relative;
       width: 100%;
-      padding: 16px;
-      z-index: 2010;
-      display: flex;
-      justify-content: flex-end;
+      height: 180px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, #0a3616 0%, #1b7a33 50%, #2fa154 100%);
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .modal-hero-img:hover {
+      transform: scale(1.05);
+    }
+
+    .modal-hero-gradient {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 80px;
+      background: linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
       pointer-events: none;
     }
 
     .modal-close-btn {
-      background: #f1f5f9;
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2010;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
       border: none;
-      width: 36px;
-      height: 36px;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      font-size: 1.6rem;
-      color: #64748b;
+      font-size: 1.5rem;
+      color: #475569;
       font-weight: bold;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      pointer-events: auto;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .modal-close-btn:hover {
+      background: white;
+      color: #1e293b;
+    }
+
+    .modal-logo-float {
+      display: flex;
+      justify-content: center;
+      margin-top: -38px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .modal-logo-float img {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: contain;
+      background: white;
+      padding: 6px;
+      border: 3px solid white;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    }
+
+    .modal-title-area {
+      text-align: center;
+      margin-bottom: 18px;
+      padding-top: 4px;
+    }
+
+    .modal-dept-name {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 8px 0 6px;
+      line-height: 1.3;
+    }
+
+    .modal-dept-acronym {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--yellow-green) 0%, var(--yellow-green-dark) 100%);
+      color: white;
+      font-weight: 800;
+      font-size: 0.7rem;
+      padding: 3px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+    }
+
+    .modal-info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .modal-info-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 14px 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .modal-info-icon {
+      width: 36px;
+      height: 36px;
+      min-width: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, var(--yellow-green) 0%, var(--yellow-green-dark) 100%);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-info-label {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    .modal-info-value {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      line-height: 1.3;
+    }
+
+    .modal-services {
+      background: #f8fafc;
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .modal-services-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-services-title svg {
+      color: var(--yellow-green-dark);
+    }
+
+    .modal-services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .modal-service-chip {
+      background: white;
+      border: 1px solid #e2e8f0;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #475569;
     }
 
     .lightbox-overlay {
@@ -630,7 +826,8 @@
               <line x1="3" y1="18" x2="21" y2="18"></line>
             </svg>
           </button>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png"
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png"
             class="logo-img" alt="Palayan City Seal">
           <div class="header-title-group">
             <div class="rep-phil">Republic of the Philippines</div>
@@ -666,14 +863,16 @@
             <div class="preview-card">
               <span class="preview-date">Recently Published</span>
               <h3 class="preview-title">Citywide Clean-up Drive Initiated</h3>
-              <p class="preview-desc">Join our localized initiatives as we promote a cleaner and greener Palayan City.</p>
+              <p class="preview-desc">Join our localized initiatives as we promote a cleaner and greener Palayan City.
+              </p>
             </div>
             <div class="preview-card">
               <span class="preview-date">Announcements</span>
               <h3 class="preview-title">New Business Permits Schedule</h3>
               <p class="preview-desc">The BPLD office has adjusted the schedule for the current quarter.</p>
             </div>
-            <a href="https://cityofpalayan.gov.ph/news-and-updates/" target="_blank" class="portal-btn">Access Full Updates Portal</a>
+            <a href="https://cityofpalayan.gov.ph/news-and-updates/" target="_blank" class="portal-btn">Access Full
+              Updates Portal</a>
             <div style="height: 100px; width: 100%;"></div>
           </div>
 
@@ -702,25 +901,60 @@
 
     <div class="modal-overlay" id="deptModal" onclick="closeModal()">
       <div class="modal-content" onclick="event.stopPropagation()">
-        <div class="modal-header"><button class="modal-close-btn" onclick="closeModal()">&times;</button></div>
-        <div class="modal-body" style="padding: 32px;">
-          <div style="text-align:center">
-            <img src="" id="mLogo"
-              style="width:75px; height:75px; border-radius:20px; object-fit:contain; background:#f8fafc; padding:8px; border:1px solid #e2e8f0;" alt="">
-            <h2 id="mName" style="font-size:1.15rem; font-weight:800; margin:16px 0 4px; color:var(--text-dark);"></h2>
-            <p id="mAcronym" style="color:var(--yellow-green-dark); font-weight:800; margin:0 0 24px; font-size:0.9rem;"></p>
+        <!-- Hero Image -->
+        <div class="modal-hero">
+          <img id="mHeroImg" class="modal-hero-img" src="" alt="" onclick="enlargeImage()">
+          <div class="modal-hero-gradient"></div>
+          <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+        </div>
+        <!-- Floating Logo -->
+        <div class="modal-logo-float">
+          <img src="" id="mLogo" alt="">
+        </div>
+        <!-- Body -->
+        <div class="modal-body" style="padding: 8px 24px 28px; overflow-y: auto;">
+          <div class="modal-title-area">
+            <h2 id="mName" class="modal-dept-name"></h2>
+            <span id="mAcronym" class="modal-dept-acronym"></span>
           </div>
-          <img id="mPic" src=""
-            style="width:100%; height:160px; object-fit:cover; border-radius:16px; margin-bottom:20px; display:none; border: 1px solid #e2e8f0; cursor: pointer;"
-            onclick="enlargeImage()" alt="">
-          <div style="background:#f8fafc; border-radius:16px; padding:18px; font-size:0.9rem; border:1px solid #e2e8f0;">
-            <p style="margin:0 0 10px;"><strong>Head:</strong> <br><span id="mHead" style="color:#475569;"></span></p>
-            <p style="margin:0 0 10px;"><strong>Location:</strong> <br><span id="mLoc" style="color:#475569;"></span></p>
-            <p style="margin:0;"><strong>Hours:</strong> <br><span id="mTime" style="color:#475569;"></span></p>
-            <div id="mServicesWrapper" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px dashed #cbd5e1;">
-              <strong style="color: var(--text-dark);">Services Offered:</strong>
-              <ul id="mServicesList" style="margin: 8px 0 0 0; padding-left: 20px; color: #475569; font-size: 0.85rem; line-height: 1.4;"></ul>
+          <div class="modal-info-grid">
+            <div class="modal-info-card">
+              <div class="modal-info-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                  <circle cx="12" cy="7" r="4" />
+                </svg></div>
+              <div><span class="modal-info-label">Department Head</span><span id="mHead"
+                  class="modal-info-value"></span></div>
             </div>
+            <div class="modal-info-card">
+              <div class="modal-info-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg></div>
+              <div><span class="modal-info-label">Location</span><span id="mLoc" class="modal-info-value"></span></div>
+            </div>
+            <div class="modal-info-card">
+              <div class="modal-info-icon"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg></div>
+              <div><span class="modal-info-label">Office Hours</span><span id="mTime" class="modal-info-value"></span>
+              </div>
+            </div>
+          </div>
+          <div id="mServicesWrapper" class="modal-services" style="display:none;">
+            <h3 class="modal-services-title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 11 12 14 22 4" />
+                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+              </svg>
+              Services Offered
+            </h3>
+            <div id="mServicesList" class="modal-services-list"></div>
           </div>
         </div>
       </div>
@@ -733,18 +967,22 @@
         <button class="close-menu-btn" onclick="toggleMenu()">&times;</button>
       </div>
 
-      <button class="accordion-btn" onclick="toggleAccordion('about')">History &amp; Growth <span class="icon">▼</span></button>
+      <button class="accordion-btn" onclick="toggleAccordion('about')">History &amp; Growth <span
+          class="icon">▼</span></button>
       <div class="accordion-content" id="about-content">
         <div class="accordion-inner">
-          <p>Established in 1965 by RA 4475, Palayan City transitioned from a government stock farm to become the capital of Nueva Ecija.</p>
-          <p>Today, it is evolving into a modern hub with the Palayan City Business Hub leading the way in jobs and investment.</p>
+          <p>Established in 1965 by RA 4475, Palayan City transitioned from a government stock farm to become the
+            capital of Nueva Ecija.</p>
+          <p>Today, it is evolving into a modern hub with the Palayan City Business Hub leading the way in jobs and
+            investment.</p>
         </div>
       </div>
 
       <button class="accordion-btn" onclick="toggleAccordion('vision')">Vision <span class="icon">▼</span></button>
       <div class="accordion-content" id="vision-content">
         <div class="accordion-inner">
-          <p>The vibrant Capital City and employment center of Nueva Ecija; thriving through an agro-industrial and Information Technology economy; enabled by disaster-resilient and organized urban growth.</p>
+          <p>The vibrant Capital City and employment center of Nueva Ecija; thriving through an agro-industrial and
+            Information Technology economy; enabled by disaster-resilient and organized urban growth.</p>
           <p style="font-weight: 800; color: var(--yellow-green-dark);">Tungo sa Bagong Palayan, Now Na!</p>
         </div>
       </div>
@@ -752,21 +990,26 @@
       <button class="accordion-btn" onclick="toggleAccordion('mission')">Mission <span class="icon">▼</span></button>
       <div class="accordion-content" id="mission-content">
         <div class="accordion-inner">
-          <p>As the steward of the vision, the City Government shall transform Palayan into a modern, sustainable and resilient city that espouses the balanced management of the built and unbuilt environment to ensure equitable growth.</p>
+          <p>As the steward of the vision, the City Government shall transform Palayan into a modern, sustainable and
+            resilient city that espouses the balanced management of the built and unbuilt environment to ensure
+            equitable growth.</p>
         </div>
       </div>
 
       <button class="accordion-btn" onclick="toggleAccordion('mandate')">Mandate <span class="icon">▼</span></button>
       <div class="accordion-content" id="mandate-content">
         <div class="accordion-inner">
-          <p>To plan and implement programs, projects, and activities to alleviate poverty, to promote and ensure the general welfare and interest of its people.</p>
+          <p>To plan and implement programs, projects, and activities to alleviate poverty, to promote and ensure the
+            general welfare and interest of its people.</p>
         </div>
       </div>
 
-      <button class="accordion-btn" onclick="toggleAccordion('pledge')">Service Pledge <span class="icon">▼</span></button>
+      <button class="accordion-btn" onclick="toggleAccordion('pledge')">Service Pledge <span
+          class="icon">▼</span></button>
       <div class="accordion-content" id="pledge-content">
         <div class="accordion-inner">
-          <p>We pledge to serve our people with utmost diligence, dignity, integrity, respect, and with the highest degree of professionalism.</p>
+          <p>We pledge to serve our people with utmost diligence, dignity, integrity, respect, and with the highest
+            degree of professionalism.</p>
           <p>We commit to provide accessible, accurate, and reasonable information at all times.</p>
         </div>
       </div>
@@ -783,20 +1026,34 @@
   <script>
     // ─── LOGO MAP ─────────────────────────────────────────────────────────────
     // Maps department acronym → image file from the public/ folder
-    const logoMap = {
-      "CASSO":  "assessor.jpg",
-      "CTO":    "Treasure.jpg",
-      "CDRRMO": "cdrrmo.jpg",
-      "CCR":    "civil_registrar.jpg",
-      "CSWD":   "cswd.jpg",
-      "CEO":    "engineering.jpg",
-      "ICT":    "ict.png",
-      "CPDO":   "planning.jpg",
-      "CTD":    "tourism.jpg",
-      "TMPSD":  "traffic.jpg",
-      "CVO":    "veterinary.jpg",
-      "LEPIDO": "Ledipo.png"
+    // Maps department acronym → image file from public/Web App/ folder
+    const imageMap = {
+      "CMO": "Web App/CMO.jpg",
+      "SP": "Web App/SP.jpg",
+      "CAGO": "Web App/CAgO.jpg",
+      "CVO": "Web App/CVO.jpg",
+      "LEPIDO": "Web App/LEPIDO.jpg",
+      "CLEO": "Web App/CLEO.jpg",
+      "CTD": "Web App/DCDH.jpg",
+      "CACO": "Web App/CAccO.jpg",
+      "CASSO": "Web App/CSSAO.jpg",
+      "CBO": "Web App/CBO.jpg",
+      "BPLD": "Web App/CCR, BPLC, CAssO, CTO.jpg",
+      "CTO": "Web App/CCR, BPLC, CAssO, CTO.jpg",
+      "TMPSD": "Web App/TMPSD.jpg",
+      "CEO": "Web App/CEO.jpg",
+      "CPDO": "Web App/CPDO.jpg",
+      "CGSO": "Web App/CGSO.jpg",
+      "CLO": "Web App/CLO.jpg",
+      "CHRMO": "Web App/CHRMO.jpg",
+      "LIB": "Web App/LIB.jpeg",
+      "ICT": "Web App/ICT.jpg",
+      "CDRRMO": "Web App/CDRRMO.jpeg",
+      "CHO": "Web App/CHO.jpeg",
+      "CSWD": "Web App/CSWDO.jpeg",
+      "CCR": "Web App/CCR, BPLC, CAssO, CTO.jpg"
     };
+    const defaultLogo = 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png';
 
     // ─── DEPARTMENT DATA ──────────────────────────────────────────────────────
     const departments = [
@@ -840,10 +1097,7 @@
         html += `<div class="category-section">`;
         html += `<span class="category-label">${cat}</span>`;
         grouped[cat].forEach(d => {
-          const logo = logoMap[d.acronym] || '';
-          const logoSrc = logo
-            ? logo
-            : 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Official_Seal_of_Palayan_City.svg/1024px-Official_Seal_of_Palayan_City.svg.png';
+          const picSrc = imageMap[d.acronym] || '';
           const services = (d.services && d.services.length > 0) ? d.services.join('|') : '';
           html += `
             <div class="dept-card"
@@ -853,10 +1107,12 @@
               data-head="${escHtml(d.head)}"
               data-loc="${escHtml(d.loc)}"
               data-time="${escHtml(d.time)}"
-              data-logo="${escHtml(logoSrc)}"
-              data-pic=""
+              data-pic="${escHtml(picSrc)}"
               data-services="${escHtml(services)}">
-              <img src="${logoSrc}" class="dept-logo" alt="${escHtml(d.acronym)} logo">
+              ${picSrc
+              ? `<div style="width:55px;height:55px;min-width:55px;margin-right:18px;border-radius:14px;overflow:hidden;background:#f1f5f9;border:1px solid #e2e8f0;"><img src="${picSrc}" style="width:100%;height:100%;object-fit:cover;display:block;" alt="${escHtml(d.acronym)}"></div>`
+              : `<img src="${defaultLogo}" class="dept-logo" alt="${escHtml(d.acronym)} logo">`
+            }
               <div class="dept-text">
                 <p style="font-weight:800; font-size:0.95rem; margin:0; color:var(--text-dark);">${escHtml(d.name)}</p>
                 <p style="font-weight:800; color:var(--yellow-green-dark); font-size:0.75rem; margin:0;">${escHtml(d.acronym)}</p>
@@ -935,28 +1191,33 @@
       document.getElementById('mHead').textContent = el.dataset.head;
       document.getElementById('mLoc').textContent = el.dataset.loc;
       document.getElementById('mTime').textContent = el.dataset.time;
-      document.getElementById('mLogo').src = el.dataset.logo;
-      let picEl = document.getElementById('mPic');
-      if (el.dataset.pic) { picEl.src = el.dataset.pic; picEl.style.display = "block"; }
-      else { picEl.style.display = "none"; }
+      document.getElementById('mLogo').src = defaultLogo;
+      // Hero image from Web App folder
+      let heroImg = document.getElementById('mHeroImg');
+      if (el.dataset.pic) {
+        heroImg.src = el.dataset.pic;
+        heroImg.style.display = 'block';
+      } else {
+        heroImg.style.display = 'none';
+      }
+      // Services
       let servicesData = el.dataset.services;
       let servicesWrapper = document.getElementById('mServicesWrapper');
       let servicesList = document.getElementById('mServicesList');
       if (servicesData) {
         let servicesArr = servicesData.split('|');
-        servicesList.innerHTML = servicesArr.map(s => `<li>${s.trim()}</li>`).join('');
+        servicesList.innerHTML = servicesArr.map(s => `<div class="modal-service-chip">${s.trim()}</div>`).join('');
         servicesWrapper.style.display = 'block';
       } else {
         servicesList.innerHTML = '';
         servicesWrapper.style.display = 'none';
       }
-      document.getElementById('deptModal').style.opacity = '1';
-      document.getElementById('deptModal').style.pointerEvents = 'auto';
+      const modal = document.getElementById('deptModal');
+      modal.classList.add('active');
     }
 
     function closeModal() {
-      document.getElementById('deptModal').style.opacity = '0';
-      document.getElementById('deptModal').style.pointerEvents = 'none';
+      document.getElementById('deptModal').classList.remove('active');
     }
 
     // ─── SIDE MENU ────────────────────────────────────────────────────────────
@@ -984,7 +1245,7 @@
 
     // ─── LIGHTBOX ─────────────────────────────────────────────────────────────
     function enlargeImage() {
-      const picSrc = document.getElementById('mPic').src;
+      const picSrc = document.getElementById('mHeroImg').src;
       if (picSrc) {
         document.getElementById('lightboxImg').src = picSrc;
         document.getElementById('lightboxOverlay').classList.add('show');
