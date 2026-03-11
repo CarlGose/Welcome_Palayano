@@ -227,7 +227,11 @@ export default function App() {
         </div>
       </div>
 
-      <footer>GOVPH © 2026 CITY OF PALAYAN</footer>
+      <footer>
+        <img src={logoDataUrl} alt="Palayan City Logo" className="footer-logo" />
+        <span>GOVPH © 2026 CITY OF PALAYAN</span>
+        <img src="/logos/ict.png" alt="ICT Logo" className="footer-logo" />
+      </footer>
 
       <DeptModal
         selectedDept={selectedDept}

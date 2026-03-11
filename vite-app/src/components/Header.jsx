@@ -9,7 +9,7 @@ export default function Header({
       className="header-wrapper"
       id="mainHeader"
       style={{
-        backgroundImage: `linear-gradient(135deg, rgba(10,54,22,0.85) 0%, rgba(5,35,12,0.95) 100%)${bannerBgUrl ? `, url('${bannerBgUrl}')` : ""}`,
+        backgroundImage: `linear-gradient(135deg, rgba(8, 48, 20, 0.95) 0%, rgba(4, 32, 11, 0.98) 100%), url('${bannerBgUrl || "/logos/default_logo.jpg"}')`,
       }}
     >
       <header id="headerContent" style={{ opacity: headerOpacity }}>
