@@ -222,18 +222,32 @@ export default function App() {
                   className="dept-card"
                   onClick={() => setSelectedDept(d)}
                 >
+                  {/* Left: building photo thumbnail (if available) */}
                   {deptImg ? (
                     <div className="dept-card-thumb">
                       <img src={deptImg} alt={d.name} />
                     </div>
-                  ) : (
-                    <img src={deptLogo} className="dept-logo" alt={d.name + ' logo'} />
-                  )}
+                  ) : null}
+
+                  {/* Middle: dept name + acronym */}
                   <div className="dept-text" style={{ flex: 1, paddingRight: '10px' }}>
                     <p style={{ fontWeight: 800, fontSize: '0.95rem', margin: 0, color: 'var(--text-dark)' }}>{d.name}</p>
                     <p style={{ fontWeight: 800, color: 'var(--yellow-green-dark)', fontSize: '0.75rem', margin: 0 }}>{d.acronym}</p>
                   </div>
-                  <img src={deptLogo} style={{ width: 48, height: 48, objectFit: 'contain', borderRadius: '50%', background: 'white', border: '2px solid #e2e8f0', padding: '3px', flexShrink: 0, boxShadow: '0 2px 6px rgba(0,0,0,0.05)' }} alt={d.acronym + ' logo'} />
+
+                  {/* Right: logo from public/LOGOS/ with .dept-logo-holder class + placeholder fallback */}
+                  <div className="dept-logo-holder">
+                    <img
+                      className="dept-logo-img"
+                      src={deptLogo}
+                      alt={d.acronym + ' logo'}
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.closest('.dept-logo-holder').classList.add('logo-error');
+                      }}
+                    />
+                    <span className="dept-logo-placeholder">{d.acronym}</span>
+                  </div>
                 </div>
               );
             })}

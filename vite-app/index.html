@@ -327,6 +327,56 @@
       flex-shrink: 0;
     }
 
+    /* ── Logo holder classes for every dept card ── */
+    .dept-logo-holder {
+      width: 55px;
+      height: 55px;
+      min-width: 55px;
+      flex-shrink: 0;
+      margin-right: 14px;
+      border-radius: 14px;
+      border: 1.5px solid #c7e8cf;
+      background: linear-gradient(135deg, #eaf6ec 0%, #d4edda 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .dept-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 4px;
+      display: block;
+      transition: opacity 0.2s ease;
+    }
+
+    /* Placeholder shown when image fails to load */
+    .dept-logo-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.55rem;
+      font-weight: 800;
+      color: #1b7a33;
+      text-align: center;
+      padding: 4px;
+      pointer-events: none;
+      opacity: 0;
+    }
+
+    .dept-logo-holder.logo-error .dept-logo-img {
+      opacity: 0;
+    }
+
+    .dept-logo-holder.logo-error .dept-logo-placeholder {
+      opacity: 1;
+    }
+
     .category-label {
       display: inline-block;
       background: linear-gradient(135deg, var(--yellow-green) 0%, var(--yellow-green-dark) 100%);
