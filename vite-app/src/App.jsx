@@ -16,8 +16,7 @@ import DeptModal from "./components/DeptModal";
 import SideMenu from "./components/SideMenu";
 import Lightbox from "./components/Lightbox";
 
-const defaultLogoDataUrl =
-  "https://upload.wikimedia.org/wikipedia/commons/1/10/Official_Seal_of_Palayan_City.svg";
+const defaultLogoDataUrl = "/logos/default_logo.jpg";
 const defaultBannerBgUrl = "";
 
 export default function App() {
