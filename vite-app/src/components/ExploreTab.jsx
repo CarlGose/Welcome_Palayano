@@ -23,7 +23,7 @@ export default function ExploreTab({ activeTab }) {
         </p>
       </div>
       <a
-        href="https://cityofpalayan.gov.ph/ctd"
+        href="https://cityofpalayan.gov.ph/citytourismdivision/?fbclid=IwY2xjawSGIcBleHRuA2FlbQIxMABicmlkETE0Y082bk13MmNTQXRDeWxFc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHid2BCcXQOSSx9UZjF8v1kjBZ2kXFKM4jwPR7gwTMG1tiQx7ickaQMa3AHJg_aem_kjcDzLAIrsWn29za0SJ1IQ"
         target="_blank"
         rel="noreferrer"
         className="portal-btn"

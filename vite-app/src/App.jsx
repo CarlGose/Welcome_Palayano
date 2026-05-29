@@ -136,9 +136,7 @@ export default function App() {
                   <div
                     className="dept-card-thumb"
                     style={{
-                      background: "#f8fafc",
                       padding: "6px",
-                      border: "1px solid #e2e8f0",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
