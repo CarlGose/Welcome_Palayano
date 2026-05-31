@@ -115,7 +115,7 @@ export const initialDepartmentsData = [
   },
   {
     cat: "ECONOMIC DEVELOPMENT",
-    name: "City Agriculturist's Office",
+    name: "City Agriculture Office",
     acronym: "CAGO",
     logo: logoCAGO,
     pic: imgCAGO,
@@ -126,7 +126,7 @@ export const initialDepartmentsData = [
   },
   {
     cat: "ECONOMIC DEVELOPMENT",
-    name: "City Veterinarian's Office",
+    name: "City Veterinary Office",
     acronym: "CVO",
     logo: logoCVO,
     pic: imgCVO,
@@ -170,7 +170,7 @@ export const initialDepartmentsData = [
   },
   {
     cat: "FISCAL MANAGEMENT",
-    name: "City Accountant's Office",
+    name: "City Accounting Office",
     acronym: "CACO",
     logo: null,
     pic: imgCACO,
