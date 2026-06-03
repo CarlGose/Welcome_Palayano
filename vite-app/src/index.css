@@ -212,6 +212,29 @@ header h1 {
 .tabs {
   display: flex;
   justify-content: space-around;
+  align-items: center;
+}
+
+.search-toggle-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 14px;
+  color: var(--yellow-green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.search-toggle-btn:hover {
+  background: rgba(10, 54, 22, 0.08);
+}
+
+.search-toggle-btn:active {
+  transform: scale(0.9);
 }
 
 .tab-btn {
