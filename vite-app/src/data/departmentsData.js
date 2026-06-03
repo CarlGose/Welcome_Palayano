@@ -6,7 +6,7 @@ const imgLEPIDO = "/offices/LEPIDO.jpg";
 const imgCLEO = "/offices/CLEO.jpg";
 const imgCTD = "/offices/DCDH.jpg";
 const imgCACO = "/offices/CAccO.jpg";
-const imgCASSO = "/offices/CSSAO.jpg";
+const imgCASSO = "/offices/CCR, BPLC, CAssO, CTO.jpg";
 const imgCBO = "/offices/CBO.jpg";
 const imgCCR = "/offices/CCR, BPLC, CAssO, CTO.jpg";
 const imgTMPSD = "/offices/TMPSD.jpg";
@@ -329,7 +329,7 @@ export const initialDepartmentsData = [
     logo: logoCDRRMO,
     pic: imgCDRRMO,
     head: "Ferdinand B. Hilado",
-    loc: "Outside Main Bldg",
+    loc: "Palayan City Arcade, Nueva Ecija - Aurora Road, Brgy. Atate, Palayan City, Nueva Ecija",
     time: "24/7",
     services: ["Emergency Rescue", "Disaster Preparedness Training"],
   },

@@ -56,12 +56,18 @@ export default function App() {
           }
         }
 
+        // Local overrides take priority over Google Sheets
+        const localLocationOverrides = {
+          CDRRMO: "Brgy. Atate, Palayan City Arcade, Nueva Ecija - Aurora Road, Palayan City, Nueva Ecija",
+          LIB: "Brgy. Singalat, Palayan City, in front of DSWD Home for the Girls, way of Palayan City Park",
+        };
+
         const updatedDepts = initialDepartmentsData.map((dept) => {
           return {
             ...dept,
             logo: localLogoMap[dept.acronym] || dept.logo || null,
             pic: localImageMap[dept.acronym] || dept.pic || null,
-            loc: locationMap[dept.acronym] || dept.loc, // Keep Google sheet text for location updates
+            loc: localLocationOverrides[dept.acronym] || locationMap[dept.acronym] || dept.loc,
           };
         });
 
@@ -124,62 +130,57 @@ export default function App() {
         result.push(
           <div className="category-section" key={cat}>
             <span className="category-label">{cat}</span>
-            {filteredDepts.map((d, index) => {
-              const deptImg = getDeptImage(d);
-              const deptLogo = getDeptLogo(d);
-              return (
-                <div
-                  key={index}
-                  className="dept-card"
-                  onClick={() => setSelectedDept(d)}
-                >
+            <div className="dept-cards-grid">
+              {filteredDepts.map((d, index) => {
+                const deptImg = getDeptImage(d);
+                const deptLogo = getDeptLogo(d);
+                return (
                   <div
-                    className="dept-card-thumb"
-                    style={{
-                      padding: "6px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
+                    key={index}
+                    className="dept-card"
+                    onClick={() => setSelectedDept(d)}
                   >
-                    <img
-                      src={deptLogo}
-                      alt={d.acronym + " logo"}
+                    <div
+                      className="dept-card-thumb"
                       style={{
-                        width: "100%",
-                        height: "100%",
-                        objectFit: "contain",
-                      }}
-                    />
-                  </div>
-                  <div
-                    className="dept-text"
-                    style={{ flex: 1, paddingLeft: "15px" }}
-                  >
-                    <p
-                      style={{
-                        fontWeight: 800,
-                        fontSize: "0.95rem",
-                        margin: 0,
-                        color: "var(--text-dark)",
+                        padding: "6px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
                       }}
                     >
-                      {d.name}
-                    </p>
-                    <p
-                      style={{
-                        fontWeight: 800,
-                        color: "var(--yellow-green-dark)",
-                        fontSize: "0.75rem",
-                        margin: 0,
-                      }}
+                      <img
+                        src={deptLogo}
+                        alt={d.acronym + " logo"}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
+                      />
+                    </div>
+                    <div
+                      className="dept-text"
+                      style={{ flex: 1, paddingLeft: "15px" }}
                     >
-                      {d.acronym}
-                    </p>
+                      <p className="dept-name">
+                        {d.name}
+                      </p>
+                      <p
+                        style={{
+                          fontWeight: 800,
+                          color: "var(--yellow-green-dark)",
+                          fontSize: "0.75rem",
+                          margin: 0,
+                        }}
+                      >
+                        {d.acronym}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>,
         );
       }

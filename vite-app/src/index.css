@@ -346,6 +346,17 @@ header h1 {
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: var(--glass-shadow);
+  height: 90px;
+  overflow: hidden;
+}
+
+.dept-name {
+  font-weight: 800;
+  font-size: 0.72rem;
+  margin: 0;
+  color: var(--text-dark);
+  line-height: 1.3;
+  word-break: break-word;
 }
 
 .dept-card:hover {
@@ -380,11 +391,9 @@ header h1 {
   margin-right: 18px;
   border-radius: 14px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.45);
-  border: 1px solid var(--glass-border);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  box-shadow: 0 4px 12px rgba(31, 38, 135, 0.08);
+  background: #ffffff; /* Solid white background as in the screenshot */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
 }
 
 .dept-card-thumb img {
@@ -978,4 +987,490 @@ footer {
   cursor: pointer;
   z-index: 4001;
   line-height: 1;
+}
+
+/* ============================
+   RESPONSIVE — TABLET (768px+)
+   ============================ */
+@media (min-width: 768px) {
+  .app-shell {
+    max-width: 100%;
+  }
+
+  footer {
+    max-width: 100%;
+  }
+
+  .header-wrapper {
+    height: 280px;
+    border-radius: 0 0 50px 50px;
+    margin-bottom: 20px;
+  }
+
+  .logo-img {
+    width: 80px;
+    height: 80px;
+    margin-top: 24px;
+  }
+
+  .header-title-group {
+    top: 110px;
+  }
+
+  .rep-phil {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+  }
+
+  header h1 {
+    font-size: 3rem;
+  }
+
+  .sub-title {
+    font-size: 0.7rem;
+    margin-top: 8px;
+  }
+
+  .mabuhay-btn {
+    padding: 14px 44px;
+    font-size: 1.5rem;
+  }
+
+  .sticky-nav {
+    padding-top: 24px;
+  }
+
+  .tab-btn {
+    font-size: 1rem;
+    padding: 14px 0;
+  }
+
+  .search-container {
+    padding: 12px 40px 14px;
+  }
+
+  .search-container input {
+    padding: 14px 24px;
+    font-size: 1rem;
+    border-radius: 16px;
+  }
+
+  .page {
+    padding: 0 40px 20px 40px;
+  }
+
+  .page-heading {
+    font-size: 1.5rem;
+    margin: 20px 0 20px;
+  }
+
+  /* Department cards in 2-column grid */
+  .dept-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 16px;
+  }
+
+  .category-label {
+    font-size: 0.85rem;
+    padding: 8px 18px;
+    margin: 28px 0 12px;
+  }
+
+  .dept-card {
+    margin-bottom: 0;
+    padding: 16px 20px;
+    border-radius: 22px;
+    height: 130px;
+  }
+
+  .dept-card-thumb {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    border-radius: 16px;
+  }
+
+  .dept-name {
+    font-size: 0.8rem;
+  }
+
+  /* Preview cards in 2-column grid */
+  .preview-card {
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .preview-title {
+    font-size: 1.1rem;
+  }
+
+  .preview-desc {
+    font-size: 0.92rem;
+  }
+
+  .portal-btn {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 18px 24px;
+    font-size: 1.1rem;
+    border-radius: 16px;
+  }
+
+  footer {
+    padding: 10px 40px;
+    font-size: 0.6rem;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .footer-logo {
+    height: 38px;
+    width: 38px;
+  }
+
+  /* Modal scales up */
+  .modal-content {
+    max-width: 520px;
+    border-radius: 28px;
+  }
+
+  .modal-hero {
+    min-height: 220px;
+  }
+
+  .modal-logo-img {
+    width: 84px;
+    height: 84px;
+  }
+
+  .modal-dept-name {
+    font-size: 1.25rem;
+  }
+
+  .modal-body {
+    padding: 8px 32px 32px;
+  }
+
+  .modal-info-card {
+    padding: 16px 20px;
+    border-radius: 16px;
+  }
+
+  .modal-info-icon {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 12px;
+  }
+
+  .modal-info-value {
+    font-size: 0.95rem;
+  }
+
+  .modal-services {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .side-menu {
+    width: 380px;
+    right: -400px;
+    padding: 28px 24px;
+  }
+
+  .menu-title {
+    font-size: 1.4rem;
+  }
+
+  .accordion-btn {
+    font-size: 1.1rem;
+    padding: 18px 0;
+  }
+}
+
+/* ============================
+   RESPONSIVE — DESKTOP (1024px+)
+   ============================ */
+@media (min-width: 1024px) {
+  .header-wrapper {
+    height: 320px;
+    border-radius: 0 0 60px 60px;
+  }
+
+  .logo-img {
+    width: 90px;
+    height: 90px;
+    margin-top: 28px;
+  }
+
+  .header-title-group {
+    top: 125px;
+  }
+
+  .rep-phil {
+    font-size: 0.8rem;
+    letter-spacing: 2.5px;
+  }
+
+  header h1 {
+    font-size: 3.5rem;
+    letter-spacing: 2px;
+  }
+
+  .sub-title {
+    font-size: 0.8rem;
+    margin-top: 10px;
+    letter-spacing: 1.5px;
+  }
+
+  .mabuhay-btn {
+    padding: 16px 52px;
+    font-size: 1.6rem;
+    border-radius: 36px;
+  }
+
+  .mabuhay-btn-container {
+    bottom: -24px;
+  }
+
+  .tab-btn {
+    font-size: 1.05rem;
+    padding: 16px 0;
+    letter-spacing: 1px;
+  }
+
+  .search-container {
+    padding: 14px 60px 16px;
+  }
+
+  .search-container input {
+    padding: 16px 28px;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .page {
+    padding: 0 60px 20px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .page-heading {
+    font-size: 1.65rem;
+    margin: 24px 0 24px;
+  }
+
+  /* 3-column grid for department cards on large screens */
+  .dept-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 18px;
+  }
+
+  .category-label {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+    margin: 32px 0 14px;
+  }
+
+  .dept-card {
+    padding: 18px 22px;
+    border-radius: 24px;
+    height: 140px;
+  }
+
+  .dept-card-thumb {
+    width: 65px;
+    height: 65px;
+    min-width: 65px;
+    border-radius: 18px;
+  }
+
+  .dept-name {
+    font-size: 0.82rem;
+  }
+
+  .preview-card {
+    padding: 26px;
+    border-radius: 22px;
+  }
+
+  .preview-title {
+    font-size: 1.2rem;
+  }
+
+  .preview-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .portal-btn {
+    max-width: 500px;
+    padding: 20px 28px;
+    font-size: 1.15rem;
+    border-radius: 18px;
+  }
+
+  footer {
+    padding: 12px 60px;
+    font-size: 0.65rem;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .footer-logo {
+    height: 42px;
+    width: 42px;
+  }
+
+  /* Modal on desktop */
+  .modal-content {
+    max-width: 600px;
+    max-height: 85vh;
+    border-radius: 32px;
+  }
+
+  .modal-hero {
+    min-height: 260px;
+  }
+
+  .modal-logo-img {
+    width: 90px;
+    height: 90px;
+    margin-top: -42px;
+  }
+
+  .modal-logo-float {
+    margin-top: -42px;
+  }
+
+  .modal-dept-name {
+    font-size: 1.35rem;
+  }
+
+  .modal-body {
+    padding: 10px 36px 36px;
+  }
+
+  .modal-info-card {
+    padding: 18px 22px;
+  }
+
+  .modal-info-icon {
+    width: 46px;
+    height: 46px;
+    min-width: 46px;
+  }
+
+  .modal-info-label {
+    font-size: 0.7rem;
+  }
+
+  .modal-info-value {
+    font-size: 1rem;
+  }
+
+  .modal-services {
+    padding: 22px;
+    border-radius: 18px;
+  }
+
+  .modal-services-title {
+    font-size: 0.9rem;
+  }
+
+  .modal-service-chip {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+
+  .side-menu {
+    width: 420px;
+    right: -440px;
+    padding: 32px 28px;
+  }
+
+  .menu-title {
+    font-size: 1.5rem;
+  }
+
+  .accordion-btn {
+    font-size: 1.15rem;
+    padding: 20px 0;
+  }
+
+  .accordion-inner {
+    font-size: 0.95rem;
+    padding: 20px;
+  }
+}
+
+/* ============================
+   RESPONSIVE — LARGE DESKTOP (1440px+)
+   ============================ */
+@media (min-width: 1440px) {
+  .header-wrapper {
+    height: 360px;
+    border-radius: 0 0 70px 70px;
+  }
+
+  .logo-img {
+    width: 100px;
+    height: 100px;
+    margin-top: 32px;
+  }
+
+  .header-title-group {
+    top: 140px;
+  }
+
+  header h1 {
+    font-size: 4rem;
+  }
+
+  .rep-phil {
+    font-size: 0.85rem;
+  }
+
+  .sub-title {
+    font-size: 0.85rem;
+  }
+
+  .mabuhay-btn {
+    padding: 18px 60px;
+    font-size: 1.75rem;
+  }
+
+  .page {
+    padding: 0 80px 20px 80px;
+    max-width: 1400px;
+  }
+
+  .dept-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 1fr;
+    gap: 20px;
+  }
+
+  .dept-card {
+    padding: 20px 24px;
+    height: 140px;
+  }
+
+  .dept-card-thumb {
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+  }
+
+  .modal-content {
+    max-width: 680px;
+  }
+
+  .modal-hero {
+    min-height: 300px;
+  }
 }
